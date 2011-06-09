@@ -1,0 +1,9 @@
+Manual Installation Instructions:
+  git clone git://github.com/danburkert/dotfiles.git
+  cd dotfiles
+  git submodule init
+  git submodule update
+
+To Update Bundles (Git Submodules):
+  cd dotfiles
+  git submodule update
