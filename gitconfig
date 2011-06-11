@@ -1,0 +1,12 @@
+[user]
+	name = Dan Burkert
+	email = danburkert@gmail.com
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
