@@ -10,7 +10,7 @@ files.each {|s| s.sub! /(\/.*)+/, ''}
 files.uniq!
 
 desc 'install symlink to dotfiles in home directory'
-task :install do
+task :install_symlinks do
   files.each do |file|
     begin
       printf "making symbolic link in home director to .#{file}... "
@@ -22,6 +22,16 @@ task :install do
     end
   end
 end
+
+desc 'initialize vim plugin submodules'
+task :initialize_plugins do
+	puts 'updating submodule plugins'
+	puts `git submodule init`
+	puts 'done'
+end
+
+desc 'install dotfiles'
+task :install => [:install_symlinks, :initialize_plugins, :update]
 
 desc 'updates the vim pluggins included as git submodules'
 task :update_plugins do
