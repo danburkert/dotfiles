@@ -1,6 +1,6 @@
 require 'rake/clean'
 
-CLEAN.include('~/.vim', '~/.vimrc')
+CLEAN.include('~/.vim', '~/.vimrc', '~/.gitignore')
 
 IGNORE = [/\.gitignore$/, /Rakefile$/, /README$/, /.gitmodules$/]
 

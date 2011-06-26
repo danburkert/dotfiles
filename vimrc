@@ -74,3 +74,6 @@ nnoremap ; :
 
 "yank from cursor to end of line with Y, consistent with C and D
 noremap Y y$
+
+map <C-Cr> <Esc>
+map <C-<Space>> <Esc>
