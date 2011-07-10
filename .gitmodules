@@ -58,6 +58,7 @@
 	path = vim/bundle/colors-peaksea
 	url = git://github.com/vim-scripts/peaksea.git
   ignore = dirty
-[submodule "vim/bundle/screen"]
-	path = vim/bundle/screen
-	url = https://github.com/vim-scripts/screen.vim.git
+[submodule "screen"]
+	path = screen
+	url = https://github.com/ervandew/screen.git
+  ignore = dirty
