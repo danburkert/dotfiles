@@ -25,7 +25,7 @@ end
 
 desc 'initialize vim plugin submodules'
 task :initialize_plugins do
-	puts 'updating submodule plugins'
+	puts 'updating submodule plugins...'
 	puts `git submodule init`
 	puts 'done'
 end
@@ -35,7 +35,7 @@ task :install => [:install_symlinks, :initialize_plugins, :update]
 
 desc 'updates the vim pluggins included as git submodules'
 task :update_plugins do
-  puts 'updating submodule plugins'
+  puts 'updating submodule plugins...'
   puts `git submodule update`
   puts 'done'
 end
@@ -53,7 +53,7 @@ task :update => [:update_repository, :update_plugins]
 desc 'remove dotfile symlinks in home directory' 
 task :clean do
   files.each do |file|
-    path = File.join(ENV['HOME'], ".#{file}")
+    path = File.join ENV['HOME'], ".#{file}"
     if File.symlink? path
       printf "removing .#{file} from the home directory... "
       FileUtils.rm_f path

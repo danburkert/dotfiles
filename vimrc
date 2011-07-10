@@ -77,3 +77,9 @@ noremap Y y$
 
 map <C-Cr> <Esc>
 map <C-<Space>> <Esc>
+
+"For screen.vim send block
+"to SendScreen function
+"(eg Scheme interpreter)
+vmap <C-c><C-c> :ScreenSend<CR>
+nmap <C-c><C-c> vip<C-c><C-c>
