@@ -1,10 +1,10 @@
 # Install
-`git clone git@github.com:danburkert/dotfiles.git
-cd dotfiles
-rake`
+    git clone git@github.com:danburkert/dotfiles.git
+    cd dotfiles
+    rake
 
 # Update
-`rake update`
+    rake update
 
 # Uninstall
-`rake clobber`
+    rake clobber
