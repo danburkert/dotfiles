@@ -1,0 +1,23 @@
+" local vimrc meant to augment Janus
+" www.github.com/carlhuda/janus
+
+" for some reason the Janus one didn't work correctly
+" with new lines in CoffeeScript
+set expandtab
+
+"No shift required to enter command in normal mode
+nnoremap ; :
+
+"yank from cursor to EOL with Y, consistent with C and D
+noremap Y y$
+
+" set vertical scroll space around cursor
+set scrolloff=5
+
+" Toggle graphical undo
+nnoremap <F5> :GundoToggle<CR>
+
+" screen.vim REPL: send paragraph to scheme interpreter
+vmap <C-c><C-c> :ScreenSend<CR>
+nmap <C-c><C-c> mCvip<C-c><C-c>`C
+imap <C-c><C-c> <Esc><C-c><C-c><Right>

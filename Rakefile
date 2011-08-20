@@ -1,15 +1,13 @@
 require 'rake/clean'
 
-CLEAN.include('~/.vim', '~/.vimrc', '~/.gitignore')
-
-IGNORE = [/\.gitignore$/, /Rakefile$/, /README$/, /.gitmodules$/]
+IGNORE = [/\.gitignore$/, /Rakefile$/, /README$/, /.git$/]
 
 files = `git ls-files`.split("\n")
-files.reject! { |f| IGNORE.any? { |re| f.match(re) } }
+files.reject! { |f| IGNORE.include? f }
 files.each {|s| s.sub! /(\/.*)+/, ''}
 files.uniq!
 
-desc 'install symlink to dotfiles in home directory'
+desc 'install symlinks to dotfiles in home directory'
 task :install_symlinks do
   files.each do |file|
     begin
@@ -23,34 +21,17 @@ task :install_symlinks do
   end
 end
 
-desc 'initialize vim plugin submodules'
-task :initialize_plugins do
-	puts 'updating submodule plugins...'
-	puts `git submodule init`
-	puts 'done'
-end
-
 desc 'install dotfiles'
-task :install => [:install_symlinks, :initialize_plugins, :update]
+task :install => [:update, :install_symlinks]
 
-desc 'updates the vim pluggins included as git submodules'
-task :update_plugins do
-  puts 'updating submodule plugins...'
-  puts `git submodule update`
-  puts 'done'
+desc 'update dotfiles from github'
+task :update do
+  puts "updating dotfiles... "
+  `git pull`
+  puts "done"
 end
 
-desc 'pull latest updates from git repository'
-task :update_repository do
-  puts 'updating local git repository...'
-  puts `git pull`
-  puts 'done'
-end
-
-desc 'pull latest from git repository, and update vim plugin submodules'
-task :update => [:update_repository, :update_plugins]
-
-desc 'remove dotfile symlinks in home directory' 
+desc 'remove dotfile symlinks in home directory'
 task :clean do
   files.each do |file|
     path = File.join ENV['HOME'], ".#{file}"
@@ -62,7 +43,7 @@ task :clean do
   end
 end
 
-desc 'remove dotfiles in home directory'
+desc 'remove dotfiles in home directory (Warning: will delete original files)'
 task :clobber do
   files.each do |file|
     printf "removing .#{file} from the home directory... "

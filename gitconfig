@@ -1,6 +1,8 @@
 [user]
 	name = Dan Burkert
 	email = danburkert@gmail.com
+[github]
+  user = [danburkert]
 [color]
 	status = auto
 	branch = auto
