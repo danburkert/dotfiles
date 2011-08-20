@@ -3,7 +3,7 @@ require 'rake/clean'
 IGNORE = [/\.gitignore$/, /Rakefile$/, /README$/, /.git$/]
 
 files = `git ls-files`.split("\n")
-files.reject! { |f| IGNORE.include? f }
+files.reject! { |f| IGNORE.any? { |re| f.match re } }
 files.each {|s| s.sub! /(\/.*)+/, ''}
 files.uniq!
 
@@ -23,6 +23,7 @@ end
 
 desc 'install dotfiles'
 task :install => [:update, :install_symlinks]
+task :default => :install
 
 desc 'update dotfiles from github'
 task :update do
