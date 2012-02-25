@@ -1,8 +1,8 @@
 require 'rake/clean'
 
-IGNORE = [/\.gitignore$/, /Rakefile$/, /README$/, /.git$/]
+IGNORE = [/Rakefile$/, /README.markdown$/, /\.git*/]
 
-files = `git ls-files`.split("\n")
+files = `git ls-files`.lines
 files.reject! { |f| IGNORE.any? { |re| f.match re } }
 files.each {|s| s.sub! /(\/.*)+/, ''}
 files.uniq!

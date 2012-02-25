@@ -1,4 +1,3 @@
 set completion-ignore-case on
 Control-j: menu-complete
-Control-k: menu-complete-backward
 set completion-map-case on
