@@ -1,7 +1,0 @@
-"Font
-set guifont=Inconsolata:h18
-
-"Color scheme
-syntax enable
-set background=light
-colorscheme solarized
