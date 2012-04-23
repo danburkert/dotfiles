@@ -23,15 +23,15 @@ nmap <C-c><C-c> mCvip<C-c><C-c>`C
 imap <C-c><C-c> <Esc><C-c><C-c><Right>
 
 " R filetype recognition
-set nocompatible
-syntax enable
-filetype plugin on
-filetype indent on
+"set nocompatible
+"syntax enable
+"filetype plugin on
+"filetype indent on
 
 "Font
-set guifont=Inconsolata:h18
+set guifont=Inconsolata:h16
 
 "Color scheme
 syntax enable
-set background=light
+set background=dark
 colorscheme solarized
