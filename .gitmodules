@@ -4,6 +4,3 @@
 [submodule "janus/tabular"]
 	path = janus/tabular
 	url = git://github.com/godlygeek/tabular.git
-[submodule "janus/cool"]
-	path = janus/cool
-	url = git://github.com/vim-scripts/cool.vim.git
