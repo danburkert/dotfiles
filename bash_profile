@@ -1,2 +1,3 @@
-export PATH=/usr/local/bin:$PATH
-eval "$(rbenv init -)"
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi

@@ -1,2 +1,3 @@
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 shopt -s globstar
+export PATH=/usr/local/bin:$PATH
+eval "$(rbenv init -)"
