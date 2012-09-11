@@ -5,6 +5,7 @@
     rake
 
 Then, install Vundle, the plugin manager:
+
     git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # Update
