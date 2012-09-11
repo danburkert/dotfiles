@@ -38,10 +38,8 @@ desc 'update dotfiles from github'
 task :update do
   puts "updating dotfiles... "
   `git pull`
-  `git submodule update`
   puts "done"
 end
-
 
 desc 'remove dotfile symlinks in home directory'
 task :clean do
