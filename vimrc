@@ -95,8 +95,10 @@ set ttymouse=xterm2 " Use mouse scrolling in terminal window
 """ Plugin Configuration
 
 "" Haskell-mode
+let g:haddock_browser="open"
+let g:haddock_browser_callformat="%s %s"
+let g:ghc="/usr/local/bin/ghc"
 au BufEnter *.hs compiler ghc
-:let g:haddock_browser="/Applications/Google\ Chrome.app"
 
 
 "" Powerline
