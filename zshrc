@@ -34,7 +34,11 @@ plugins=(git osx)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+
+# Alias vim to macvim on the command line
+alias vim='mvim -v'
+alias vimdiff='mvimdiff -v'
 
 # GHCI doesn't use readline, force it if rlwrap is available
 (( $+commands[rlwrap] )) && ghci() {

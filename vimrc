@@ -27,6 +27,12 @@ filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
 syntax on " Enable syntax highlighting
 
+"" Buffer behaviour
+set hidden " Allow changed buffers to be in back ground
+
+"" System copy / paste
+set clipboard=unnamed
+
 "" Lines
 set number " Display line numbers
 set nowrap " turn off line wrapping
