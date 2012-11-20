@@ -11,10 +11,12 @@ Bundle 'gmarik/vundle'
 
 " Plugins:
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'bitc/lushtags'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
@@ -97,7 +99,10 @@ set ttymouse=xterm2 " Use mouse scrolling in terminal window
 "" Haskell-mode
 let g:haddock_browser="open"
 let g:haddock_browser_callformat="%s %s"
-let g:ghc="/usr/local/bin/ghc"
+let g:ghc="/usr/local/Cellar/ghc/7.4.2/"
+
+let g:haddock_docdir="/usr/local/Cellar/ghc/7.4.2/share/doc/ghc/html/"
+let g:haddock_indexfiledir="~/.vim/"
 au BufEnter *.hs compiler ghc
 
 
