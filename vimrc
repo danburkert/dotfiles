@@ -18,6 +18,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/vitality.vim'
@@ -28,6 +29,12 @@ Bundle 'tpope/vim-surround'
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
 syntax on " Enable syntax highlighting
+
+"" Buffer behaviour
+set hidden " Allow changed buffers to be in back ground
+
+"" System copy / paste
+set clipboard=unnamed
 
 "" Lines
 set number " Display line numbers
