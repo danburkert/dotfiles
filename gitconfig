@@ -1,6 +1,6 @@
 [user]
-	name = Dan Burkert
-	email = danburkert@gmail.com
+  name = Dan Burkert
+  email = danburkert@gmail.com
 [credential]
   helper = osxkeychain
 [github]
@@ -8,12 +8,16 @@
 [color]
   ui = auto
 [core]
-  excludesfile = $HOME/.gitignore
+  excludesfile = ~/.gitignore
   editor = vim
 [merge]
   tool = vimdiff
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	br = branch
+  st = status
+  cm = commit
+  ch = checkout
+  br = branch
+  unstage = reset HEAD
+  last = log -1
+[push]
+  default = simple
