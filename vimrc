@@ -25,6 +25,7 @@ Bundle 'sjl/vitality.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'vim-scripts/VimClojure'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -112,6 +113,9 @@ let g:haddock_docdir="/usr/local/Cellar/ghc/7.4.2/share/doc/ghc/html/"
 let g:haddock_indexfiledir="~/.vim/"
 au BufEnter *.hs compiler ghc
 
+"" ClojureVim
+let vimclojure#HighlightBuiltins=1
+let vimclojure#WantNailgun=1
 
 "" Powerline
 set laststatus=2   " Always show the statusline
