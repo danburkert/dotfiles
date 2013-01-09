@@ -14,7 +14,9 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
+Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
@@ -22,10 +24,11 @@ Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/vitality.vim'
+Bundle 'tpope/vim-classpath'
+Bundle 'tpope/vim-foreplay'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/VimClojure'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -77,7 +80,6 @@ noremap Y y$
 " Toggle search highlighting
 nnoremap <Leader>hs :nohlsearch<CR>
 
-
 "" Movement
 set scrolloff=5 " set vertical scroll space around cursor
 set sidescrolloff=7 " set horizontal scroll space around cursor
@@ -89,7 +91,6 @@ set nostartofline " Don't jump to start of line with movements
 
 "" Files
 set autoread " Automatically read changed files
-
 
 "" Theme
 set background=dark
@@ -113,9 +114,19 @@ let g:haddock_docdir="/usr/local/Cellar/ghc/7.4.2/share/doc/ghc/html/"
 let g:haddock_indexfiledir="~/.vim/"
 au BufEnter *.hs compiler ghc
 
-"" ClojureVim
-let vimclojure#HighlightBuiltins=1
-let vimclojure#WantNailgun=1
+"" Clojure
+let g:clojure_maxlines=100 " Maximum scan distance of searchpairpos()
+let g:clojure_fuzzy_indent=1
+let g:clojure_fuzzy_indent_patterns="with.*,def.*,let.*" " Indent words that match patterns
+let g:clojure_align_multiline_strings=1 " Align multiline strings to 1 column right of opening quote
+
+"" Rainbow Parentheses
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 "" Powerline
 set laststatus=2   " Always show the statusline
@@ -124,7 +135,6 @@ let g:Powerline_symbols = 'unicode'
 
 "" Tagbar
 nmap <Leader>t :TagbarToggle<CR>
-
 
 """ Autocommands
 if has("autocmd")
