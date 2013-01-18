@@ -17,7 +17,6 @@ Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'paredit.vim'
@@ -40,6 +39,9 @@ set hidden " Allow changed buffers to be in back ground
 
 "" System copy / paste
 set clipboard=unnamed
+
+"" Expected backspace behaviour
+set backspace=indent,eol,start
 
 "" Lines
 set number " Display line numbers
@@ -96,7 +98,7 @@ set autoread " Automatically read changed files
 "" Theme
 set background=dark
 colorscheme solarized
-set guifont=Inconsolata:h16 "Font
+set guifont=Inconsolata\ for\ Powerline:h16 "Font
 set t_Co=256 " Tell terminal to use 256 colors
 set title " Turn on title bar support
 
@@ -105,6 +107,9 @@ set mouse=a " Enable mouse
 set ttymouse=xterm2 " Use mouse scrolling in terminal window
 
 """ Plugin Configuration
+
+"" Powerline
+python from powerline.ext.vim import source_plugin; source_plugin()
 
 "" Haskell-mode
 let g:haddock_browser="open"
