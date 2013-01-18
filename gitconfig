@@ -20,5 +20,3 @@
   unstage = reset HEAD
   last = log -1
   logp = log --pretty=oneline
-[push]
-  default = simple
