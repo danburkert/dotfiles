@@ -37,20 +37,16 @@ unsetopt correct_all
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 
-# Alias vim to macvim on the command line
-alias vim='mvim -v'
-alias vimdiff='mvimdiff -v'
-
 # GHCI doesn't use readline, force it if rlwrap is available
 (( $+commands[rlwrap] )) && ghci() {
-    command rlwrap \
-                --always-readline --complete-filenames -t dumb \
-                --histsize 5000 \
-                --file ~/.shell/rlwrap/ghci \
-                ghci "$@" 2>&1
+  command rlwrap \
+    --always-readline --complete-filenames -t dumb \
+    --histsize 5000 \
+    --file ~/.shell/rlwrap/ghci \
+    ghci "$@" 2>&1
 }
 
-# Include stuff that should only be on this
- if [[ -r ~/.zshrc.local ]]; then
-     source ~/.zshrc.local
-     fi
+# Include stuff that should only be on this machine
+if [[ -r ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
