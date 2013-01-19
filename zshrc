@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="blinks"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -29,7 +29,7 @@ ZSH_THEME="blinks"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git osx lein mvn per-directory-history)
+plugins=(brew git osx lein mvn per-directory-history tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
