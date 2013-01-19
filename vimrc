@@ -110,6 +110,8 @@ set ttymouse=xterm2 " Use mouse scrolling in terminal window
 
 "" Powerline
 python from powerline.ext.vim import source_plugin; source_plugin()
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
 
 "" Haskell-mode
 let g:haddock_browser="open"
@@ -147,11 +149,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-
-"" Powerline
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-let g:Powerline_symbols = 'unicode'
 
 "" Tagbar
 nmap <Leader>t :TagbarToggle<CR>
