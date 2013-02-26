@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 " Plugins:
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
+Bundle 'DoxygenToolkit.vim'
 Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
