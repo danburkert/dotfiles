@@ -12,7 +12,6 @@ Bundle 'gmarik/vundle'
 " Plugins:
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
-Bundle 'ervandew/supertab'
 Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
@@ -25,10 +24,11 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/vitality.vim'
 Bundle 'tpope/vim-classpath'
-Bundle 'tpope/vim-foreplay'
+Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
