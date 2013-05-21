@@ -75,8 +75,6 @@ set wildmenu
 set wildignore=*.o,*.obj,*.class
 
 "" Remappings
-"No shift required to enter command in normal mode
-nnoremap ; :
 " yank from cursor to EOL with Y, consistent with C and D
 noremap Y y$
 " Toggle search highlighting
