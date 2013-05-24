@@ -106,9 +106,9 @@ set ttymouse=xterm2 " Use mouse scrolling in terminal window
 """ Plugin Configuration
 
 "" Powerline
-python from powerline.ext.vim import source_plugin; source_plugin()
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
+"python from powerline.ext.vim import source_plugin; source_plugin()
+"set laststatus=2   " Always show the statusline
+"set encoding=utf-8 " Necessary to show Unicode glyphs
 
 "" Haskell-mode
 let g:haddock_browser="open"
