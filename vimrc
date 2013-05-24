@@ -16,6 +16,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'Lokaltog/powerline'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'paredit.vim'
@@ -106,9 +107,10 @@ set ttymouse=xterm2 " Use mouse scrolling in terminal window
 """ Plugin Configuration
 
 "" Powerline
-"python from powerline.ext.vim import source_plugin; source_plugin()
-"set laststatus=2   " Always show the statusline
-"set encoding=utf-8 " Necessary to show Unicode glyphs
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+set noshowmode
 
 "" Haskell-mode
 let g:haddock_browser="open"
