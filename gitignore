@@ -2,3 +2,5 @@
 .DS_Store
 tags
 .idea/
+*.iml
+.lein-repl-history
