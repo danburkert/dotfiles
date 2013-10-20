@@ -96,7 +96,7 @@ set autoread " Automatically read changed files
 "" Theme
 set background=dark
 colorscheme solarized
-set guifont=Inconsolata\ for\ Powerline:h16 "Font
+set guifont=Inconsolata-dz\ for\ Powerline:h16 "Font
 set t_Co=256 " Tell terminal to use 256 colors
 set title " Turn on title bar support
 
