@@ -29,14 +29,14 @@ done
 hbase_home="/usr/local/opt/hbase/libexec"
 if [ -d $hbase_home ]; then
   echo "Installing HBase 0.94.x conf"
-  rm -rf $hbase_conf/conf
-  ln -s "${dir}/etc/hbase-94" ${hbase_home}/conf
+  rm -rf "${hbase_conf}/conf"
+  ln -s "${dir}/etc/hbase-94" "${hbase_home}/conf"
 fi
 
 # Install Hadoop 1.x conf if Hadoop is installed
 hadoop_home="/usr/local/opt/hadoop/libexec"
 if [ -d $hadoop_home ]; then
   echo "Installing Hadoop 1.x conf"
-  rm -rf $hadoop_home/conf
-  ln -s "${dir}/etc/hadoop-1" ${hadoop_home}/conf
+  rm -rf "${hadoop_home}/conf"
+  ln -s "${dir}/etc/hadoop-1" "${hadoop_home}/conf"
 fi
