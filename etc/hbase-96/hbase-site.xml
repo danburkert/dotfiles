@@ -23,7 +23,7 @@
 <configuration>
   <property>
     <name>hbase.rootdir</name>
-    <value>hdfs://localhost:9000/hbase-095</value>
+    <value>hdfs://localhost:9000/hbase-96</value>
   </property>
   <property>
     <name>hbase.cluster.distributed</name>
@@ -46,23 +46,7 @@
     </description>
   </property>
   <property>
-    <name>hbase.coprocessor.region.classes</name>
-    <value>org.apache.hadoop.hbase.coprocessor.example.BulkDeleteEndpoint</value>
-  </property>
-  <!--<property>-->
-    <!--<name>hbase.coprocessor.region.classes</name>-->
-    <!--<value>org.apache.hadoop.hbase.regionserver.MedianSplitObserver</value>-->
-  <!--</property>-->
-  <!--<property>-->
-    <!--<name>hbase.regionserver.region.split.policy</name>-->
-    <!--<value>org.apache.hadoop.hbase.regionserver.MedianSplitPolicy</value>-->
-  <!--</property>-->
-  <property>
     <name>hbase.metrics.showTableName</name>
     <value>true</value>
-  </property>
-  <property>
-    <name>hbase.hregion.max.filesize</name>
-    <value>1073741824</value>
   </property>
 </configuration>

@@ -1,4 +1,3 @@
-#
 #/**
 # * Copyright 2007 The Apache Software Foundation
 # *
@@ -25,8 +24,7 @@
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Extra Java CLASSPATH elements.  Optional.
-export HBASE_CLASSPATH=/Users/dburkert/NIC/honeycomb/storage-engine-proxy/target/honeycomb-0.1-SNAPSHOT-jar-with-dependencies.jar:/Users/dburkert/NIC/honeycomb/storage-engine-backends/hbase/target/honeycomb-hbase-0.1-SNAPSHOT-jar-with-dependencies.jar:/Users/dburkert/NIC/hbase-median-region-split/target/median-region-split-0.2-SNAPSHOT.jar:$HBASE_CLASSPATH
-
+#export HBASE_CLASSPATH=$HBASE_CLASSPATH
 export HBASE_LIBRARY_PATH=/usr/local/Cellar/hadoop/1.1.2/libexec/lib/native/Linux-amd64-64/:$HBASE_LIBRARY_PATH
 
 # The maximum amount of heap to use, in MB. Default is 1000.
