@@ -10,13 +10,16 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Plugins:
+Bundle 'Lokaltog/powerline'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'elzr/vim-json'
 Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'Lokaltog/powerline'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'paredit.vim'
@@ -26,9 +29,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'sjl/vitality.vim'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -151,6 +154,42 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "" Tagbar
 nmap <Leader>t :TagbarToggle<CR>
+"let g:tagbar_type_scala = {
+    "\ 'ctagstype' : 'Scala',
+    "\ 'kinds'     : [
+        "\ 'c:classes',
+        "\ 'o:objects',
+        "\ 't:traits',
+        "\ 'm:case-classes',
+        "\ 'M:case-objects',
+        "\ 'a:abstract-classes',
+        "\ 'f:functions',
+        "\ 'V:values',
+        "\ 'v:variables',
+        "\ 'T:types',
+        "\ 'p:packages:1'
+    "\ ]
+"\ }
+
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'Scala',
+    \ 'kinds'     : [
+        \ 'p:packages:1',
+        \ 'V:values',
+        \ 'v:variables',
+        \ 'T:types',
+        \ 't:traits',
+        \ 'o:objects',
+        \ 'c:classes',
+        \ 'C:case-classes',
+        \ 'O:case-objects',
+        \ 'm:methods'
+    \ ]
+\ }
+
+
+"" ctrlp
+set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 """ Autocommands
 if has("autocmd")
@@ -169,3 +208,12 @@ if has("autocmd")
 
   augroup END
 endif
+
+"" Syntastic
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java', 'scala'] }
+
+"" Scala
+hi scalaNew gui=underline
+hi scalaMethodCall gui=italic
+hi scalaValName gui=underline
+hi scalaVarName gui=underline
