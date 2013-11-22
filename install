@@ -1,0 +1,42 @@
+#!/bin/bash
+
+dir="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
+
+if [ ! -d "${HOME}/.vim/bundle/vundle" ]; then
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
+
+if [ ! -d "${HOME}/.oh-my-zsh" ]; then
+  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+fi
+
+for file in gitconfig gitignore hushlogin tmux.conf vimrc zshrc
+do
+  install_path="${HOME}/.${file}"
+
+  if [ -L $install_path ]; then
+    rm $install_path # If its a link, remove it
+  elif [ -f $install_path ]; then
+    echo "${install_path} exists already! moving to ${dir}/backup"
+    mkdir -p "${dir}/backup"
+    mv $install_path "${dir}/backup/"
+  fi
+
+  ln -s "${dir}/${file}" $install_path
+done
+
+# Install HBase 94 conf if HBase is installed
+hbase_home="/usr/local/opt/hbase/libexec"
+if [ -d $hbase_home ]; then
+  echo "Installing HBase 0.94.x conf"
+  rm -rf $hbase_conf/conf
+  ln -s "${dir}/etc/hbase-94" ${hbase_home}/conf
+fi
+
+# Install Hadoop 1.x conf if Hadoop is installed
+hadoop_home="/usr/local/opt/hadoop/libexec"
+if [ -d $hadoop_home ]; then
+  echo "Installing Hadoop 1.x conf"
+  rm -rf $hadoop_home/conf
+  ln -s "${dir}/etc/hadoop-1" ${hadoop_home}/conf
+fi
