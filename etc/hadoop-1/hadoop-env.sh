@@ -57,5 +57,5 @@ export HADOOP_JOBTRACKER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_JOBTRACKER
 # export HADOOP_NICENESS=10
 
 export HADOOP_OPTS="-Djava.security.krb5.realm=OX.AC.UK -Djava.security.krb5.kdc=kdc0.ox.ac.uk:kdc1.ox.ac.uk -Djava.awt.headless=true -XX:+UseConcMarkSweepGC"
-export HADOOP_TASKTRACKER_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5007"
+export HADOOP_TASKTRACKER_OPTS="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5007 -Djava.awt.headless=true"
 export HADOOP_HOME_WARN_SUPPRESS="TRUE"
