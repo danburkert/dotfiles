@@ -1,0 +1,8 @@
+#!/bin/sh
+
+## Uninstalls all kiji instances on the current machine
+
+for instance in $(kiji ls $1);
+do
+  kiji delete --target=$instance --interactive=false
+done
