@@ -5,5 +5,5 @@
 
 for instance in $(kiji ls $1);
 do
-  kiji delete --target=$instance --interactive=false
+  kiji delete --target=$instance --interactive=false &
 done
