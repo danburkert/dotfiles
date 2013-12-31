@@ -41,6 +41,8 @@ unsetopt correct_all
 # Customize to your needs...
 export PATH=${DOTFILES}/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 
+DISABLE_AUTO_TITLE=true
+
 # tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 export EDITOR=vim
