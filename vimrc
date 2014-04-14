@@ -126,6 +126,7 @@ au BufEnter *.hs compiler ghc
 
 "" Clojure
 let g:clojure_align_multiline_strings=1 " Align multiline strings to 1 column right of opening quote
+au BufNewFile,BufRead *.edn set filetype=clojure
 
 "" Rainbow Parentheses
 let g:rbpt_colorpairs = [

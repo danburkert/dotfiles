@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Creates a kiji instance with the table layouts from layouts
+
+#for instance in $(kiji ls $1);
+#do
+  #kiji delete --target=$instance --interactive=false &
+#done
+
+
+instance=${1-default}
+
+kiji="kiji://.env/${instance}"
+
+kiji install --kiji=$kiji
+
+kiji-schema-shell --kiji=$kiji --file=./layouts.ddl
