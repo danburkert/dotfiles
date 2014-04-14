@@ -4,6 +4,8 @@ ZSH=$HOME/.oh-my-zsh
 #path to the dotfiles folder
 export DOTFILES=$HOME/dotfiles
 
+export JAVA_HOME=$(/usr/libexec/java_home)
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
