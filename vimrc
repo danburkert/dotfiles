@@ -32,6 +32,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
+Bundle 'wting/rust.vim'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -155,22 +156,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 "" Tagbar
 nmap <Leader>t :TagbarToggle<CR>
-"let g:tagbar_type_scala = {
-    "\ 'ctagstype' : 'Scala',
-    "\ 'kinds'     : [
-        "\ 'c:classes',
-        "\ 'o:objects',
-        "\ 't:traits',
-        "\ 'm:case-classes',
-        "\ 'M:case-objects',
-        "\ 'a:abstract-classes',
-        "\ 'f:functions',
-        "\ 'V:values',
-        "\ 'v:variables',
-        "\ 'T:types',
-        "\ 'p:packages:1'
-    "\ ]
-"\ }
 
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'Scala',
@@ -188,6 +173,20 @@ let g:tagbar_type_scala = {
     \ ]
 \ }
 
+let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'Rust',
+    \ 'kinds'     : [
+        \ 'f:function',
+        \ 'T:types',
+        \ 'm:types',
+        \ 'm:modules',
+        \ 'm:consts',
+        \ 'm:traits',
+        \ 'm:impls',
+        \ 'm:macros'
+    \ ],
+    \ 'sro'      : '::'
+\ }
 
 "" ctrlp
 set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip     " MacOSX/Linux
@@ -218,3 +217,23 @@ hi scalaNew gui=underline
 hi scalaMethodCall gui=italic
 hi scalaValName gui=underline
 hi scalaVarName gui=underline
+
+"" Rust
+
+if has("autocmd")
+  autocmd FileType rust :call LoadRustTags()
+endif
+
+function LoadRustTags()
+  let rust_home=$HOME . "/src/rust"
+  if isdirectory(rust_home)
+    let rust_tags=rust_home . "/TAGS.vi"
+    if filereadable(rust_tags)
+      exec "setlocal tags+=".rust_tags
+    else
+      echo rust_tags." missing. Create it with `cd ".rust_home."; ./configure; make TAGS.vi`. Standard library ctags will be unavailable."
+    endif
+  else
+    echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
+  endif
+endfunction
