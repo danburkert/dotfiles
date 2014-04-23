@@ -174,7 +174,7 @@ let g:tagbar_type_scala = {
 \ }
 
 let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'Rust',
+    \ 'ctagstype' : 'rust',
     \ 'kinds'     : [
         \ 'f:function',
         \ 'T:types',
