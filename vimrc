@@ -225,7 +225,7 @@ if has("autocmd")
 endif
 
 function LoadRustTags()
-  let rust_home=$HOME . "/src/rust"
+  let rust_home=$HOME . "/src/rust/rust"
   if isdirectory(rust_home)
     let rust_tags=rust_home . "/TAGS.vi"
     if filereadable(rust_tags)
@@ -237,3 +237,5 @@ function LoadRustTags()
     echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
   endif
 endfunction
+
+let g:syntastic_rust_rustc_args = "-L target -L build --test"
