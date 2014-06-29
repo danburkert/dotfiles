@@ -108,6 +108,9 @@ set title " Turn on title bar support
 set mouse=a " Enable mouse
 set ttymouse=xterm2 " Use mouse scrolling in terminal window
 
+set exrc   " enable per-directory .vimrc files
+set secure " disable unsafe commands in local .vimrc files
+
 """ Plugin Configuration
 
 "" Powerline
@@ -223,6 +226,12 @@ hi scalaVarName gui=underline
 if has("autocmd")
   autocmd FileType rust :call LoadRustTags()
 endif
+
+let g:syntastic_rust_rustc_args = "--no-trans -L target -L build --test"
+
+:autocmd FileType rust set shiftwidth=4 " Number of spaces for each tab in autoindent (<< and >>)
+:autocmd FileType rust set softtabstop=4 " Number of columns inserted by tab key
+:autocmd FileType rust set tabstop=4 " Number of spaces for each tab.  Affect how text is displayed
 
 function LoadRustTags()
   let rust_home=$HOME . "/src/rust/rust"
