@@ -228,7 +228,7 @@ if has("autocmd")
   autocmd FileType rust :call LoadRustTags()
 endif
 
-let g:syntastic_rust_rustc_args = "--no-trans -L target -L build --test"
+let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
 
 :autocmd FileType rust set shiftwidth=4 " Number of spaces for each tab in autoindent (<< and >>)
 :autocmd FileType rust set softtabstop=4 " Number of columns inserted by tab key
@@ -247,5 +247,3 @@ function LoadRustTags()
     echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
   endif
 endfunction
-
-let g:syntastic_rust_rustc_args = "-L target -L build --test"
