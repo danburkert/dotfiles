@@ -1,9 +1,0 @@
-#!/bin/sh
-
-## Uninstalls all kiji instances on the current machine if no argument
-## Uninstalls remote kiji instance with `./uninstall-kiji-instances kiji://other-cluster:2181/`
-
-for instance in $(kiji ls $1);
-do
-  kiji delete --target=$instance --interactive=false & 2> /dev/null
-done

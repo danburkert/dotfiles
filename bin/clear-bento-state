@@ -1,5 +1,0 @@
-#!/bin/sh
-
-## Removes any state (HDFS, Zookeeper, Etc.) associated with the installed bento box
-
-rm -rf $BENTO_CLUSTER_HOME/state

@@ -5,3 +5,10 @@ tags
 *.iml
 .lein-repl-history
 .nrepl-port
+out
+target
+output
+__pycache__
+.vagrant
+Vagrantfile
+.python-version

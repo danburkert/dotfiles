@@ -11,10 +11,10 @@ Bundle 'gmarik/vundle'
 
 " Plugins:
 Bundle 'Lokaltog/powerline'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
 Bundle 'cespare/vim-toml'
+Bundle 'cstrahan/vim-capnp'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'elzr/vim-json'
 Bundle 'godlygeek/tabular'
@@ -24,6 +24,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'paredit.vim'
+Bundle 'phildawes/racer'
 Bundle 'puppetlabs/puppet-syntax-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
@@ -33,7 +34,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'wting/rust.vim'
+Bundle 'rust-lang/rust.vim'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -193,7 +194,7 @@ let g:tagbar_type_rust = {
 \ }
 
 "" ctrlp
-set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*     " MacOSX/Linux
 
 """ Autocommands
 if has("autocmd")

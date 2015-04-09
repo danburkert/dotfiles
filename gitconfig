@@ -5,8 +5,6 @@
   helper = osxkeychain
 [github]
   user = [danburkert]
-[color]
-  ui = auto
 [core]
   excludesfile = ~/.gitignore
   editor = vim
@@ -22,3 +20,5 @@
   logp = log --pretty=oneline
 [push]
   default = current
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
