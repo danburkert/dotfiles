@@ -17,6 +17,7 @@ Bundle 'cespare/vim-toml'
 Bundle 'cstrahan/vim-capnp'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'elzr/vim-json'
+Bundle 'fatih/vim-go'
 Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'kien/ctrlp.vim'
@@ -248,3 +249,9 @@ function LoadRustTags()
     echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
   endif
 endfunction
+
+"" Go
+:autocmd FileType go set shiftwidth=4 " Number of spaces for each tab in autoindent (<< and >>)
+:autocmd FileType go set softtabstop=4 " Number of columns inserted by tab key
+:autocmd FileType go set tabstop=4 " Number of spaces for each tab.  Affect how text is displayed
+:autocmd Filetype go set nolist
