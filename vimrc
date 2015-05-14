@@ -11,6 +11,7 @@ Bundle 'gmarik/vundle'
 
 " Plugins:
 Bundle 'Lokaltog/powerline'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bitc/lushtags'
 Bundle 'cespare/vim-toml'
@@ -25,9 +26,10 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'paredit.vim'
-Bundle 'phildawes/racer'
 Bundle 'puppetlabs/puppet-syntax-vim'
+Bundle 'rust-lang/rust.vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/vitality.vim'
 Bundle 'tpope/vim-fireplace'
@@ -35,7 +37,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-markdown'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
-Bundle 'rust-lang/rust.vim'
 
 filetype plugin on " Enable filetype plugins
 filetype indent on " Enable filetype specific indent rules
@@ -195,7 +196,7 @@ let g:tagbar_type_rust = {
 \ }
 
 "" ctrlp
-set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*     " MacOSX/Linux
+set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*,*/build/*,*/thirdparty/*,/*Testing/*     " MacOSX/Linux
 
 """ Autocommands
 if has("autocmd")
@@ -255,3 +256,6 @@ endfunction
 :autocmd FileType go set softtabstop=4 " Number of columns inserted by tab key
 :autocmd FileType go set tabstop=4 " Number of spaces for each tab.  Affect how text is displayed
 :autocmd Filetype go set nolist
+
+"" Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
