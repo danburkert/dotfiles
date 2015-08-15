@@ -6,28 +6,29 @@ dir="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
 # Create a symlink from a file to a destination, moving any existing file to
 # /tmp.
 # Arguments:
-#   - $1 from path
-#   - $2 destination path
+#   - $1 file name
+#   - $2 from path
+#   - $3 destination path
 symlink() {
-  if [ -L $2 ]; then
-    rm $2 # If its a link, remove it
-  elif [ -f $2 ]; then
-    tmp=$(mktemp -d)
-    echo "$2 exists already! moving to ${tmp}"
-    mv $2 "${tmp}/"
+  if [ -L $3 ]; then
+    rm $3 # If its a link, remove it
+  elif [ -f $3 ]; then
+    tmp=$(mktemp "/tmp/${1}.XXX")
+    echo "$3 exists already! moving to ${tmp}"
+    mv $3 "${tmp}"
   fi
 
-  ln -s $1 $2
+  ln -s $2 $3
 }
 
 for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc
 do
-  symlink "${dir}/${file}" "${HOME}/.${file}"
+  symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done
 
 # Install ctags file from local rust repo.
 if [ ! -e "${HOME}/stc/rust/rust/src/etc/ctags.rust" ]; then
-  symlink "${HOME}/src/rust/rust/src/etc/ctags.rust" "${HOME}/.ctags"
+  symlink "ctags.rust" "${HOME}/src/rust/rust/src/etc/ctags.rust" "${HOME}/.ctags"
 fi
 
 # Install vim plugins, if vim exists.
@@ -46,9 +47,9 @@ if [[ $(type -P fish) ]]; then
 
   if [ ! -e "${HOME}/opt/oh-my-fish" ]; then
     mkdir -p $HOME/opt
-    git clone git://github.com/oh-my-fish/oh-my-fish.git ${HOME}/opt/oh-my-fish
-    cp ${HOME}/opt/oh-my-fish/templates/config.fish ~/.config/fish/config.fish
+    git clone git://github.com/oh-my-fish/oh-my-fish.git "${HOME}/opt/oh-my-fish"
+    cp "${HOME}/opt/oh-my-fish/templates/config.fish" "${HOME}/.config/fish/config.fish"
   fi
 
-  symlink "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
+  symlink "config.fish" "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 fi

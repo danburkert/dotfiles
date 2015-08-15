@@ -162,8 +162,8 @@ nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
 
 " let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
 
-let g:racer_cmd="~/src/rust/racer/target/release/racer"
-let $RUST_SRC_PATH="/home/dcb/src/rust/rust/src/"
+let g:racer_cmd=$HOME."/src/rust/racer/target/release/racer"
+let $RUST_SRC_PATH=$HOME."/src/rust/rust/src/"
 
 augroup rust
   autocmd!
