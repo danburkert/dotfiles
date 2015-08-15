@@ -12,7 +12,7 @@ Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/powerline'
-Plug 'phildawes/racer'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer --system-libclang' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
@@ -74,7 +74,11 @@ set wildignore=*.o,*.obj,*.class
 " Toggle search highlighting
 nnoremap <Leader>hs :nohlsearch<CR>
 " Switch from insert to normal mode.
-:inoremap jk <esc>
+inoremap jk <esc>
+" Use 'jk'; break the Ctrl-C habit.
+noremap <C-c> <Esc>
+" Disable ex mode.
+nnoremap Q <Nop>
 
 "" Movement
 set scrolloff=5       " Minimal number of screen lines to keep above and below cursor.
@@ -156,14 +160,19 @@ nnoremap <silent> <C-b> <ESC>:CtrlPBuffer<CR>
 nnoremap <silent> <C-l> <ESC>:CtrlPLine<CR>
 nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
 
+"" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer on completion.
+
 """ Language Configuratoin
 
 "" Rust
 
 " let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
 
-let g:racer_cmd=$HOME."/src/rust/racer/target/release/racer"
-let $RUST_SRC_PATH=$HOME."/src/rust/rust/src/"
+" Racer is disabled until integration with YCM is complete.
+" Plug 'phildawes/racer'
+" let g:racer_cmd=$HOME."/src/rust/racer/target/release/racer"
+" let $RUST_SRC_PATH=$HOME."/src/rust/rust/src/"
 
 augroup rust
   autocmd!
