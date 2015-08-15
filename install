@@ -2,7 +2,15 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
 
-# ln -s $HOME/src/rust/rust/src/etc/ctags.rust ~/.ctags
+ctags_path="${HOME}/.ctags"
+if [ -L $ctags_path ]; then
+  rm $ctags_path # If its a link, remove it
+elif [ -f $ctags_path ]; then
+  tmp=$(mktemp -d)
+  echo "${ctags_path} exists already! moving to ${tmp}"
+  mv $ctags_path "${tmp}/"
+fi
+ln -s "${dir}/ctags" $ctags_path
 
 for file in gitconfig gitignore hushlogin tmux.conf vimrc zshrc ideavimrc
 do
@@ -21,9 +29,10 @@ done
 
 if [[ $(type -P vim) ]]; then
 
-  if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  if [ ! -e "${HOME}/.vim/autoload/plug.vim" ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 
-  vim +BundleInstall! +BundleClean +qall
+  vim +PlugUpdate +qall
 fi

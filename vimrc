@@ -2,30 +2,24 @@
 
 set nocompatible " Set baseline options to vim defaults instead of vi defaults.
 
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-
-" let Vundle manage Vundle, required.
-Plugin 'VundleVim/Vundle.vim'
-
 " Plugins:
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'cespare/vim-toml'
-Plugin 'cstrahan/vim-capnp'
-Plugin 'elzr/vim-json'
-Plugin 'godlygeek/tabular'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'Lokaltog/powerline'
-Plugin 'phildawes/racer'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'cespare/vim-toml'
+Plug 'cstrahan/vim-capnp'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elzr/vim-json'
+Plug 'godlygeek/tabular'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'Lokaltog/powerline'
+Plug 'phildawes/racer'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
 filetype plugin on " Enable filetype plugins.
