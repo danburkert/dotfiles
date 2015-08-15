@@ -9,8 +9,9 @@
 [merge]
   tool = vimdiff
 [alias]
-  unstage = reset HEAD
   last = log -1
   logp = log --pretty=oneline
+  staged = diff --staged
+  unstage = reset HEAD
 [push]
   default = current

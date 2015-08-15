@@ -1,32 +1,36 @@
 #!/bin/bash
 
+# The directory of the dotfiles repository.
 dir="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
 
-ctags_path="${HOME}/.ctags"
-if [ -L $ctags_path ]; then
-  rm $ctags_path # If its a link, remove it
-elif [ -f $ctags_path ]; then
-  tmp=$(mktemp -d)
-  echo "${ctags_path} exists already! moving to ${tmp}"
-  mv $ctags_path "${tmp}/"
-fi
-ln -s "${dir}/ctags" $ctags_path
-
-for file in gitconfig gitignore hushlogin tmux.conf vimrc zshrc ideavimrc
-do
-  install_path="${HOME}/.${file}"
-
-  if [ -L $install_path ]; then
-    rm $install_path # If its a link, remove it
-  elif [ -f $install_path ]; then
+# Create a symlink from a file to a destination, moving any existing file to
+# /tmp.
+# Arguments:
+#   - $1 from path
+#   - $2 destination path
+symlink() {
+  if [ -L $2 ]; then
+    rm $2 # If its a link, remove it
+  elif [ -f $2 ]; then
     tmp=$(mktemp -d)
-    echo "${install_path} exists already! moving to ${tmp}"
-    mv $install_path "${tmp}/"
+    echo "$2 exists already! moving to ${tmp}"
+    mv $2 "${tmp}/"
   fi
 
-  ln -s "${dir}/${file}" $install_path
+  ln -s $1 $2
+}
+
+for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc
+do
+  symlink "${dir}/${file}" "${HOME}/.${file}"
 done
 
+# Install ctags file from local rust repo.
+if [ ! -e "${HOME}/stc/rust/rust/src/etc/ctags.rust" ]; then
+  symlink "${HOME}/src/rust/rust/src/etc/ctags.rust" "${HOME}/.ctags"
+fi
+
+# Install vim plugins, if vim exists.
 if [[ $(type -P vim) ]]; then
 
   if [ ! -e "${HOME}/.vim/autoload/plug.vim" ]; then
@@ -35,4 +39,16 @@ if [[ $(type -P vim) ]]; then
   fi
 
   vim +PlugUpdate +qall
+fi
+
+# Install oh-my-fish and config, if fish exists.
+if [[ $(type -P fish) ]]; then
+
+  if [ ! -e "${HOME}/opt/oh-my-fish" ]; then
+    mkdir -p $HOME/opt
+    git clone git://github.com/oh-my-fish/oh-my-fish.git ${HOME}/opt/oh-my-fish
+    cp ${HOME}/opt/oh-my-fish/templates/config.fish ~/.config/fish/config.fish
+  fi
+
+  symlink "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 fi
