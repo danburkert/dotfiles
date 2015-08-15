@@ -12,3 +12,4 @@ __pycache__
 .vagrant
 Vagrantfile
 .python-version
+gitignore*

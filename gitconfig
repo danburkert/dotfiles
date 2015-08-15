@@ -1,8 +1,6 @@
 [user]
   name = Dan Burkert
   email = dan@danburkert.com
-[credential]
-  helper = osxkeychain
 [github]
   user = [danburkert]
 [core]
@@ -11,14 +9,8 @@
 [merge]
   tool = vimdiff
 [alias]
-  st = status
-  cm = commit
-  ch = checkout
-  br = branch
   unstage = reset HEAD
   last = log -1
   logp = log --pretty=oneline
 [push]
   default = current
-[url "ssh://git@github.com/"]
-  insteadOf = https://github.com/

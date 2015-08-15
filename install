@@ -2,41 +2,28 @@
 
 dir="$( cd "$( dirname "${BASH_SOURCE:-$0}" )" && pwd )"
 
-if [ ! -d "${HOME}/.vim/bundle/vundle" ]; then
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-fi
+# ln -s $HOME/src/rust/rust/src/etc/ctags.rust ~/.ctags
 
-if [ ! -d "${HOME}/.oh-my-zsh" ]; then
-  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-fi
-
-for file in gitconfig gitignore hushlogin tmux.conf vimrc zshrc ctags ideavimrc
+for file in gitconfig gitignore hushlogin tmux.conf vimrc zshrc ideavimrc
 do
   install_path="${HOME}/.${file}"
 
   if [ -L $install_path ]; then
     rm $install_path # If its a link, remove it
   elif [ -f $install_path ]; then
-    echo "${install_path} exists already! moving to ${dir}/backup"
-    mkdir -p "${dir}/backup"
-    mv $install_path "${dir}/backup/"
+    tmp=$(mktemp -d)
+    echo "${install_path} exists already! moving to ${tmp}"
+    mv $install_path "${tmp}/"
   fi
 
   ln -s "${dir}/${file}" $install_path
 done
 
-# Install Hadoop 2.x conf if Hadoop is installed
-hadoop_home="/usr/local/opt/hadoop/libexec"
-if [ -d $hadoop_home ]; then
-  echo "Installing Hadoop 2.x conf"
-  rm -rf "${hadoop_home}/etc/hadoop"
-  ln -s "${dir}/etc/hadoop-2" "${hadoop_home}/etc/hadoop"
-fi
+if [[ $(type -P vim) ]]; then
 
-# Install HBase 96 conf if HBase is installed
-hbase_home="/usr/local/opt/hbase/libexec"
-if [ -d $hbase_home ]; then
-  echo "Installing HBase 0.96.x conf"
-  rm -rf "${hbase_home}/conf"
-  ln -s "${dir}/etc/hbase-96" "${hbase_home}/conf"
+  if [ ! -d "${HOME}/.vim/bundle/Vundle.vim" ]; then
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  fi
+
+  vim +BundleInstall! +BundleClean +qall
 fi

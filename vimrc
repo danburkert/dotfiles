@@ -1,82 +1,75 @@
 """ Vim Configuration
-set nocompatible " Behave like vim, not vi
+
+set nocompatible " Set baseline options to vim defaults instead of vi defaults.
 
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 
 " let Vundle manage Vundle, required.
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Plugins:
-Bundle 'Lokaltog/powerline'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bitc/lushtags'
-Bundle 'cespare/vim-toml'
-Bundle 'cstrahan/vim-capnp'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'elzr/vim-json'
-Bundle 'fatih/vim-go'
-Bundle 'godlygeek/tabular'
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/ctrlp.vim'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'paredit.vim'
-Bundle 'puppetlabs/puppet-syntax-vim'
-Bundle 'rust-lang/rust.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'sjl/vitality.vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-markdown'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'cespare/vim-toml'
+Plugin 'cstrahan/vim-capnp'
+Plugin 'elzr/vim-json'
+Plugin 'godlygeek/tabular'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'Lokaltog/powerline'
+Plugin 'phildawes/racer'
+Plugin 'rust-lang/rust.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
 
-filetype plugin on " Enable filetype plugins
-filetype indent on " Enable filetype specific indent rules
-syntax on " Enable syntax highlighting
+filetype indent on " Enable filetype specific indent rules.
+filetype plugin on " Enable filetype plugins.
+syntax on          " Enable syntax highlighting.
 
-"" Buffer behaviour
-set hidden " Allow changed buffers to be in back ground
+set hidden " Allow abandoned buffers to be hidden instead of unloaded.
+set shell=/bin/bash
 
-"" System copy / paste
-set clipboard=unnamed
+set clipboard=unnamed " Set the system clipboard to the default yank and paste register.
 
 "" Expected backspace behaviour
 set backspace=indent,eol,start
 
 "" Lines
-set number " Display line numbers
-set nowrap " turn off line wrapping
+set colorcolumn=101 " highlight the 101st column
+set number          " Display line numbers
+set nowrap          " turn off line wrapping
+set wrapmargin=0    " turn off line wrapping in insert mode
+set textwidth=80    " 80 character lines
 
 "" Indentation
-set shiftwidth=2 " Number of spaces for each tab in autoindent (<< and >>)
-set softtabstop=2 " Number of columns inserted by tab key
-set expandtab " Use spaces instead of tabs
-set tabstop=2 " Number of spaces for each tab.  Affect how text is displayed
-set autoindent " Copy indent from current line when starting a new line
-set smarttab " Set tab width to shiftwidth on start of line tab insert
+set shiftwidth=2  " Number of spaces to use for each step of (auto)indent.
+set shiftround    " Round indent to multiple of 'shiftwidth'.
+set softtabstop=2 " Number of spaces that a <Tab> counts for while performing editing operations.
+set expandtab     " In Insert mode: Use the appropriate number of spaces to insert a <Tab>.
+set tabstop=4     " Number of spaces that a <Tab> in the file counts for.
+set autoindent    " Copy indent from the current line when starting a new line.
+set smarttab      " When on, a <Tab> in front of a line inserts blanks according to shiftwidth.
+set smartindent   " Do smart autoindenting when starting a new line.
 
 "" Whitespace
-set list " Show newlines, tabs
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅ " Change displayed symbols
+set list                            " Display unprintable characters in 'listchars'.
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅ " Strings to use in 'list' mode.
 
 "" Searching
-set incsearch " Find matches while still typeing
-set hlsearch " Highlight matches by default
-set ignorecase " Ignore case on searches...
-set smartcase " unless searching for a capital
+set incsearch  " While typing a search command, show where the pattern matches so far.
+set hlsearch   " When there is a previous search pattern, highlight all of its matches.
+set ignorecase " Ignore the case of normal characters in search.
+set smartcase  " Override the 'ignorecase' option if the search pattern contains upper case characters.
 
 "" Folding
-"set foldmethod=indent " Fold based on indent
-"set foldnestmax=3 " Deepest fold is 3 levels
-"set nofoldenable " Don't fold by default
+"set foldmethod=indent  " Fold based on indent.
+"set foldnestmax=3      " Deepest fold is 3 levels.
+"set nofoldenable       " Don't fold by default.
 
 "" Comand Line
 set wildmode=list:longest " Complete longest common string, then list (similar to bash)
@@ -84,57 +77,58 @@ set wildmenu
 set wildignore=*.o,*.obj,*.class
 
 "" Remappings
-" yank from cursor to EOL with Y, consistent with C and D
-noremap Y y$
 " Toggle search highlighting
 nnoremap <Leader>hs :nohlsearch<CR>
+" Switch from insert to normal mode.
+:inoremap jk <esc>
 
 "" Movement
-set scrolloff=5 " set vertical scroll space around cursor
-set sidescrolloff=7 " set horizontal scroll space around cursor
-set sidescroll=1 " scroll horizontally by 1 column at a time
-set virtualedit=block " Let cursor move past last char in visual block mode
-set showmatch " Briefly jump to a parent when it's balanced...
-set matchtime=2 " for only .2 seconds
-set nostartofline " Don't jump to start of line with movements
+set scrolloff=5       " Minimal number of screen lines to keep above and below cursor.
+set sidescrolloff=10  " Minimal number of screen columns to keep to the left and right of the cursor if 'nowrap' is set.
+set sidescroll=5      " Minimal number of columns to scroll horizontally.
+set virtualedit=block " Allow cursor to move beyond the end of the line in visual block mode.
+set showmatch         " When a bracket is inserted, briefly highlight the matching one.
+set matchtime=2       " Tenths of a second to show the matching bracket, when 'showmatch' is set.
+set nostartofline     " Keep the cursor in the same column when moving between lines, if possible.
 
 "" Files
-set autoread " Automatically read changed files
+set autoread  " Automatically read changed files
+set autowrite " Write the contents of a modified file when switching buffers.
 
 "" Theme
 set background=dark
 colorscheme solarized
-set guifont=Inconsolata-dz\ for\ Powerline:h16 "Font
-set t_Co=256 " Tell terminal to use 256 colors
-set title " Turn on title bar support
+set guifont=Inconsolata-dz\ for\ Powerline:h16
+set t_Co=256 " Number of colors.
+set title " When on, the title of the window will be set.
 
 "" Mouse settings
-set mouse=a " Enable mouse
+set mouse=a         " Enable the use of the mouse.
 set ttymouse=xterm2 " Use mouse scrolling in terminal window
 
-set exrc   " enable per-directory .vimrc files
-set secure " disable unsafe commands in local .vimrc files
+set exrc   " Enable per-directory .vimrc files.
+set secure " Disable unsafe commands in local .vimrc files.
+
+augroup position
+  " Jump to last cursor position when opening a file, except for commit log entries.
+  autocmd BufReadPost * call SetCursorPosition()
+  function! SetCursorPosition()
+    if &filetype !~ 'commit\c'
+      if line("'\"") > 0 && line("'\"") <= line("$")
+        exe "normal! g`\""
+        normal! zz
+      endif
+    end
+  endfunction
+augroup END
 
 """ Plugin Configuration
 
 "" Powerline
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
+set laststatus=2   " Always show the statusline.
+set encoding=utf-8 " Necessary to show Unicode glyphs.
 set noshowmode
-
-"" Haskell-mode
-let g:haddock_browser="open"
-let g:haddock_browser_callformat="%s %s"
-let g:ghc="/usr/local/Cellar/ghc/7.4.2/"
-
-let g:haddock_docdir="/usr/local/Cellar/ghc/7.4.2/share/doc/ghc/html/"
-let g:haddock_indexfiledir="~/.vim/"
-au BufEnter *.hs compiler ghc
-
-"" Clojure
-let g:clojure_align_multiline_strings=1 " Align multiline strings to 1 column right of opening quote
-au BufNewFile,BufRead *.edn set filetype=clojure
 
 "" Rainbow Parentheses
 let g:rbpt_colorpairs = [
@@ -161,83 +155,31 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-"" Tagbar
-nmap <Leader>t :TagbarToggle<CR>
-
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'c:classes',
-        \ 'C:case-classes',
-        \ 'O:case-objects',
-        \ 'm:methods'
-    \ ]
-\ }
-
-let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'rust',
-    \ 'kinds'     : [
-        \ 'f:function',
-        \ 'T:types',
-        \ 'm:types',
-        \ 'm:modules',
-        \ 'm:consts',
-        \ 'm:traits',
-        \ 'm:impls',
-        \ 'm:macros'
-    \ ],
-    \ 'sro'      : '::'
-\ }
-
 "" ctrlp
-set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*,*/build/*,*/thirdparty/*,/*Testing/*     " MacOSX/Linux
+set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*,*/build/*,*/thirdparty/*,/*Testing/*,/*CMakeFiles/*
+nnoremap <silent> <C-m> <ESC>:CtrlPMRU<CR>
+nnoremap <silent> <C-b> <ESC>:CtrlPBuffer<CR>
+nnoremap <silent> <C-l> <ESC>:CtrlPLine<CR>
+nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
 
-""" Autocommands
-if has("autocmd")
-  augroup vimrcEx
-  "jump to last cursor position when opening a file
-  ""dont do it when writing a commit log entry
-  autocmd BufReadPost * call SetCursorPosition()
-  function! SetCursorPosition()
-    if &filetype !~ 'svn\|commit\c'
-      if line("'\"") > 0 && line("'\"") <= line("$")
-        exe "normal! g`\""
-        normal! zz
-      endif
-    end
-  endfunction
-
-  augroup END
-endif
-
-"" Syntastic
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['java', 'scala'] }
-
-"" Scala
-hi scalaNew gui=underline
-hi scalaMethodCall gui=italic
-hi scalaValName gui=underline
-hi scalaVarName gui=underline
+""" Language Configuratoin
 
 "" Rust
 
-if has("autocmd")
+" let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
+
+let g:racer_cmd="~/src/rust/racer/target/release/racer"
+let $RUST_SRC_PATH="/home/dcb/src/rust/rust/src/"
+
+augroup rust
+  autocmd!
   autocmd FileType rust :call LoadRustTags()
-endif
+  autocmd FileType rust set shiftwidth=4  " Number of spaces for each tab in autoindent (<< and >>)
+  autocmd FileType rust set softtabstop=4 " Number of columns inserted by tab key
+  autocmd FileType rust set tabstop=4     " Number of spaces for each tab.  Affect how text is displayed
+augroup END
 
-let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
-
-:autocmd FileType rust set shiftwidth=4 " Number of spaces for each tab in autoindent (<< and >>)
-:autocmd FileType rust set softtabstop=4 " Number of columns inserted by tab key
-:autocmd FileType rust set tabstop=4 " Number of spaces for each tab.  Affect how text is displayed
-
-function LoadRustTags()
+function! LoadRustTags()
   let rust_home=$HOME . "/src/rust/rust"
   if isdirectory(rust_home)
     let rust_tags=rust_home . "/TAGS.vi"
@@ -251,11 +193,11 @@ function LoadRustTags()
   endif
 endfunction
 
-"" Go
-:autocmd FileType go set shiftwidth=4 " Number of spaces for each tab in autoindent (<< and >>)
-:autocmd FileType go set softtabstop=4 " Number of columns inserted by tab key
-:autocmd FileType go set tabstop=4 " Number of spaces for each tab.  Affect how text is displayed
-:autocmd Filetype go set nolist
-
-"" Nerd Tree
-map <C-n> :NERDTreeToggle<CR>
+"" Prose
+augroup prose
+  autocmd!
+  autocmd filetype text setlocal wrap
+  autocmd filetype markdown setlocal wrap
+  autocmd filetype text :iabbrev <buffer> -- —
+  autocmd filetype markdown :iabbrev <buffer> -- —
+augroup END
