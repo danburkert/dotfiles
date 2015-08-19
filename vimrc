@@ -162,6 +162,7 @@ nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
 
 "" YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer on completion.
+let g:ycm_confirm_extra_conf=0
 
 """ Language Configuratoin
 
