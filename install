@@ -52,4 +52,6 @@ if [[ $(type -P fish) ]]; then
   fi
 
   symlink "config.fish" "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
+else
+  echo "fish shell not installed; skipping oh-my-fish and fish configuration"
 fi
