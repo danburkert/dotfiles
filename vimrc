@@ -8,17 +8,18 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
 Plug 'cstrahan/vim-capnp'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'danro/rename.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/powerline'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --system-libclang' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
@@ -162,7 +163,10 @@ nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
 
 "" YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer on completion.
+let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_min_num_identifier_candidate_chars=0
 let g:ycm_confirm_extra_conf=0
+let g:ycm_rust_src_path=$HOME . "/src/rust/rust"
 
 """ Language Configuratoin
 

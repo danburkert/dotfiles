@@ -15,3 +15,5 @@
   unstage = reset HEAD
 [push]
   default = current
+[grep]
+  linenumber = true
