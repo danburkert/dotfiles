@@ -19,7 +19,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'salsifis/vim-transpose'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
