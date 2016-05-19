@@ -204,8 +204,8 @@ endfunction
 "" Prose
 augroup prose
   autocmd!
-  autocmd filetype text setlocal wrap
-  autocmd filetype markdown setlocal wrap
-  autocmd filetype text :iabbrev <buffer> -- —
-  autocmd filetype markdown :iabbrev <buffer> -- —
+  autocmd FileType text setlocal wrap
+  autocmd FileType markdown setlocal wrap
+  autocmd FileType text :iabbrev <buffer> -- —
+  autocmd FileType markdown :iabbrev <buffer> -- —
 augroup END
