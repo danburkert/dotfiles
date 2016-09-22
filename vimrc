@@ -211,3 +211,12 @@ augroup prose
   autocmd FileType text :iabbrev <buffer> -- —
   autocmd FileType markdown :iabbrev <buffer> -- —
 augroup END
+
+"" git
+augroup git
+  autocmd!
+  autocmd FileType gitcommit setlocal textwidth=72
+augroup END
+
+"" C++
+autocmd Filetype c,cpp set comments^=:///
