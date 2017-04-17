@@ -1,6 +1,7 @@
 [user]
   name = Dan Burkert
-  email = dan@danburkert.com
+  email = danburkert@apache.org
+  signingkey = B303BB2F
 [github]
   user = [danburkert]
 [core]

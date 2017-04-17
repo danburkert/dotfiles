@@ -11,6 +11,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'danro/rename.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
+Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/powerline'
 Plug 'rust-lang/rust.vim'
@@ -39,6 +40,7 @@ set backspace=indent,eol,start
 "" Lines
 set colorcolumn=101 " highlight the 101st column
 set number          " Display line numbers
+set ruler           " Display line and column numer in status
 set nowrap          " turn off line wrapping
 set wrapmargin=0    " turn off line wrapping in insert mode
 set textwidth=80    " 80 character lines
@@ -168,18 +170,16 @@ let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer o
 let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_min_num_identifier_candidate_chars=0
 let g:ycm_confirm_extra_conf=0
-let g:ycm_rust_src_path=$HOME . "/src/rust/rust"
+let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
+
+let g:ycm_server_use_vim_stdout = 1
+let g:ycm_server_log_level = 'debug'
 
 """ Language Configuratoin
 
 "" Rust
 
 " let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
-
-" Racer is disabled until integration with YCM is complete.
-" Plug 'phildawes/racer'
-" let g:racer_cmd=$HOME."/src/rust/racer/target/release/racer"
-" let $RUST_SRC_PATH=$HOME."/src/rust/rust/src/"
 
 augroup rust
   autocmd!
@@ -190,17 +190,17 @@ augroup rust
 augroup END
 
 function! LoadRustTags()
-  let rust_home=$HOME . "/src/rust/rust"
-  if isdirectory(rust_home)
-    let rust_tags=rust_home . "/TAGS.vi"
-    if filereadable(rust_tags)
-      exec "setlocal tags+=".rust_tags
-    else
-      echo rust_tags." missing. Create it with `cd ".rust_home."; ./configure; make TAGS.vi`. Standard library ctags will be unavailable."
-    endif
-  else
-    echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
-  endif
+  "let rust_home = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
+  "if isdirectory(rust_home)
+    "let rust_tags=rust_home . "/TAGS.vi"
+    "if filereadable(rust_tags)
+      "exec "setlocal tags+=".rust_tags
+    "else
+      "echo rust_tags." missing. Create it with `cd ".rust_home."; ./configure; make TAGS.vi`. Standard library ctags will be unavailable."
+    "endif
+  "else
+    "echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
+  "endif
 endfunction
 
 "" Prose
