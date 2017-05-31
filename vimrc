@@ -172,9 +172,6 @@ let g:ycm_min_num_identifier_candidate_chars=0
 let g:ycm_confirm_extra_conf=0
 let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
 
-let g:ycm_server_use_vim_stdout = 1
-let g:ycm_server_log_level = 'debug'
-
 """ Language Configuratoin
 
 "" Rust

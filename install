@@ -26,11 +26,6 @@ do
   symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done
 
-# Install ctags file from local rust repo.
-if [ ! -e "${HOME}/stc/rust/rust/src/etc/ctags.rust" ]; then
-  symlink "ctags.rust" "${HOME}/src/rust/rust/src/etc/ctags.rust" "${HOME}/.ctags"
-fi
-
 # Install vim plugins, if vim exists.
 if [[ $(type -P vim) ]]; then
 
@@ -40,18 +35,4 @@ if [[ $(type -P vim) ]]; then
   fi
 
   vim +PlugUpdate +qall
-fi
-
-# Install oh-my-fish and config, if fish exists.
-if [[ $(type -P fish) ]]; then
-
-  if [ ! -e "${HOME}/opt/oh-my-fish" ]; then
-    mkdir -p $HOME/opt
-    git clone git://github.com/oh-my-fish/oh-my-fish.git "${HOME}/opt/oh-my-fish"
-    cp "${HOME}/opt/oh-my-fish/templates/config.fish" "${HOME}/.config/fish/config.fish"
-  fi
-
-  symlink "config.fish" "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
-else
-  echo "fish shell not installed; skipping oh-my-fish and fish configuration"
 fi
