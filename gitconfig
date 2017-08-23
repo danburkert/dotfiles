@@ -18,3 +18,5 @@
   default = current
 [grep]
   linenumber = true
+[branch]
+  autosetuprebase = always

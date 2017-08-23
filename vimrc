@@ -14,15 +14,17 @@ Plug 'godlygeek/tabular'
 Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/powerline'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'salsifis/vim-transpose'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'salsifis/vim-transpose'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
-Plug 'rust-lang/rust.vim'
 call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
