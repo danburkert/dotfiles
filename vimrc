@@ -4,27 +4,27 @@ set nocompatible " Set baseline options to vim defaults instead of vi defaults.
 
 " Plugins:
 call plug#begin('~/.vim/plugged')
+Plug 'Lokaltog/powerline'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
 Plug 'cstrahan/vim-capnp'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'danro/rename.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guns/vim-clojure-static'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'Lokaltog/powerline'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'rust-lang/rust.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'salsifis/vim-transpose'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
@@ -71,11 +71,6 @@ set smartcase  " Override the 'ignorecase' option if the search pattern contains
 "set foldmethod=indent  " Fold based on indent.
 "set foldnestmax=3      " Deepest fold is 3 levels.
 "set nofoldenable       " Don't fold by default.
-
-"" Comand Line
-set wildmode=list:longest " Complete longest common string, then list (similar to bash)
-set wildmenu
-set wildignore=*.o,*.obj,*.class
 
 "" Remappings
 " Toggle search highlighting
@@ -160,12 +155,33 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-"" ctrlp
-set wildignore+=*/tmp/*,*/target/*,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*,*/build/*,*/thirdparty/*,/*Testing/*,/*CMakeFiles/*
-nnoremap <silent> <C-m> <ESC>:CtrlPMRU<CR>
-nnoremap <silent> <C-b> <ESC>:CtrlPBuffer<CR>
-nnoremap <silent> <C-l> <ESC>:CtrlPLine<CR>
-nnoremap <silent> <leader>t <ESC>:CtrlPTag<CR>
+"" Comand Line
+set wildmode=list:longest " Complete longest common string, then list (similar to bash)
+set wildmenu
+set wildignore+=*/tmp/*,*/target/*,*.obj,*.class,*.o,*.so,*.swp,*.zip,*/.git/*,*/out/*,*/output/*,*/build/*,*/thirdparty/*,*/Testing/*,*/CMakeFiles/*
+
+"" FZF
+" Emulate ctrlp as a fuzzy file finder.
+nnoremap <C-p> :FZF<CR>
+
+" https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --vimgrep '.shellescape(<q-args>), 1, <bang>0)
+
+" CTRL-G to grep for the word under the cursor.
+nnoremap <C-g> :Find <C-R><C-W><CR>
+
+"" RipGrep
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 "" YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer on completion.
@@ -173,12 +189,12 @@ let g:ycm_min_num_of_chars_for_completion=1
 let g:ycm_min_num_identifier_candidate_chars=0
 let g:ycm_confirm_extra_conf=0
 let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
+nnoremap <C-i> :YcmCompleter GoTo<CR>
+nnoremap <C-t> :YcmCompleter GetType<CR>
 
 """ Language Configuratoin
 
 "" Rust
-
-" let g:syntastic_rust_rustc_args = "--no-trans -L target -L target/deps --test"
 
 augroup rust
   autocmd!
@@ -207,8 +223,8 @@ augroup prose
   autocmd!
   autocmd FileType text setlocal wrap
   autocmd FileType markdown setlocal wrap
-  autocmd FileType text :iabbrev <buffer> -- —
-  autocmd FileType markdown :iabbrev <buffer> -- —
+  "autocmd FileType text :iabbrev <buffer> -- —
+  "autocmd FileType markdown :iabbrev <buffer> -- —
 augroup END
 
 "" git
