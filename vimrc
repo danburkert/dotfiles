@@ -2,6 +2,11 @@
 
 set nocompatible " Set baseline options to vim defaults instead of vi defaults.
 
+" TODO(vim/vim#3117): remove this
+if has('python3')
+  silent! python3 1
+endif
+
 " Plugins:
 call plug#begin('~/.vim/plugged')
 Plug 'Lokaltog/powerline'
@@ -13,6 +18,7 @@ Plug 'danro/rename.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guns/vim-clojure-static'
+Plug 'hashrocket/vim-macdown'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -198,25 +204,10 @@ nnoremap <C-t> :YcmCompleter GetType<CR>
 
 augroup rust
   autocmd!
-  autocmd FileType rust :call LoadRustTags()
   autocmd FileType rust set shiftwidth=4  " Number of spaces for each tab in autoindent (<< and >>)
   autocmd FileType rust set softtabstop=4 " Number of columns inserted by tab key
   autocmd FileType rust set tabstop=4     " Number of spaces for each tab.  Affect how text is displayed
 augroup END
-
-function! LoadRustTags()
-  "let rust_home = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
-  "if isdirectory(rust_home)
-    "let rust_tags=rust_home . "/TAGS.vi"
-    "if filereadable(rust_tags)
-      "exec "setlocal tags+=".rust_tags
-    "else
-      "echo rust_tags." missing. Create it with `cd ".rust_home."; ./configure; make TAGS.vi`. Standard library ctags will be unavailable."
-    "endif
-  "else
-    "echo "Rust source not found in ".rust_home.". Standard library ctags will be unavailable."
-  "endif
-endfunction
 
 "" Prose
 augroup prose
@@ -235,3 +226,6 @@ augroup END
 
 "" C++
 autocmd Filetype c,cpp set comments^=:///
+
+"" Goto header (.h) or impl (.cc) for the current buffer file.
+noremap <C-h> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
