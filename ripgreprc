@@ -1,0 +1,5 @@
+# See https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+# Ignore Jest snapshot test files.
+--glob
+!*.snapshot.test.js.snap

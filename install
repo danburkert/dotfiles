@@ -23,7 +23,7 @@ symlink() {
   ln -s $2 $3
 }
 
-for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc
+for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc ripgreprc
 do
   symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done

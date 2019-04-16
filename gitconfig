@@ -17,10 +17,13 @@
   unstage = reset HEAD
 [push]
   default = current
+[status]
+  relativePaths = true
 [grep]
   linenumber = true
 [branch]
   autosetuprebase = always
+  autosetupmerge = always
 [color]
   ui = true
 [color "diff-highlight"]

@@ -9,6 +9,7 @@ endif
 
 " Plugins:
 call plug#begin('~/.vim/plugged')
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Lokaltog/powerline'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
 Plug 'altercation/vim-colors-solarized'
@@ -23,6 +24,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim'
 Plug 'salsifis/vim-transpose'
 Plug 'scrooloose/nerdcommenter'
