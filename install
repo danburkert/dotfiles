@@ -41,3 +41,14 @@ if [[ $(type -P vim) ]]; then
 
   vim +PlugUpdate +qall
 fi
+
+# Install the TMUX plugin manager, if TMUX exists.
+if [[ $(type -P tmux) ]]; then
+  if [ ! -e "${HOME}/.tmux/plugins/tpm" ]; then
+    git clone "https://github.com/tmux-plugins/tpm" "${HOME}/.tmux/plugins/tpm"
+  fi
+
+  pushd "${HOME}/.tmux/plugins/tpm"
+  git pull
+  popd
+fi
