@@ -19,7 +19,6 @@ Plug 'danro/rename.vim'
 Plug 'elzr/vim-json'
 Plug 'godlygeek/tabular'
 Plug 'guns/vim-clojure-static'
-Plug 'hashrocket/vim-macdown'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -33,6 +32,11 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+
+if system('uname') =~ "Darwin"
+  Plug 'hashrocket/vim-macdown'
+endif
+
 call plug#end()
 
 filetype indent on " Enable filetype specific indent rules.
