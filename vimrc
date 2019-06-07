@@ -32,6 +32,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 if system('uname') =~ "Darwin"
   Plug 'hashrocket/vim-macdown'
@@ -235,3 +236,6 @@ autocmd Filetype c,cpp set comments^=:///
 
 "" Goto header (.h) or impl (.cc) for the current buffer file.
 noremap <C-h> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
+
+"" Disable the buggy SQL autocomplete plugin.
+let g:omni_sql_no_default_maps = 1
