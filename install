@@ -28,8 +28,9 @@ do
   symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done
 
-# Install config.fish.
+# Install config.fish and alacritty.yml.
 symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
+symlink alacritty.yml "${dir}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
 
 # Install vim plugins, if vim exists.
 if [[ $(type -P vim) ]]; then
