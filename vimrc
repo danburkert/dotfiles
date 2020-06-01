@@ -109,7 +109,7 @@ set autoread  " Automatically read changed files
 set autowrite " Write the contents of a modified file when switching buffers.
 
 "" Theme
-set background=dark
+set background=light
 colorscheme solarized
 set guifont=Inconsolata-dz\ for\ Powerline:h16
 set t_Co=256 " Number of colors.
