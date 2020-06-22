@@ -3,7 +3,7 @@ window:
 
 font:
   normal:
-    family: Inconsolata-dz for Powerline
+    family: 'FiraCode Nerd Font'
 
   size: 12.0
   use_thin_strokes: true
