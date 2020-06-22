@@ -55,7 +55,7 @@ set backspace=indent,eol,start
 "" Lines
 set colorcolumn=101 " highlight the 101st column
 set number          " Display line numbers
-set ruler           " Display line and column numer in status
+set ruler           " Display line and column number in status
 set nowrap          " turn off line wrapping
 set wrapmargin=0    " turn off line wrapping in insert mode
 set textwidth=80    " 80 character lines
@@ -109,7 +109,7 @@ set autoread  " Automatically read changed files
 set autowrite " Write the contents of a modified file when switching buffers.
 
 "" Theme
-set background=light
+set background=dark
 colorscheme solarized
 set guifont=Inconsolata-dz\ for\ Powerline:h16
 set t_Co=256 " Number of colors.

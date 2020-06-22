@@ -5,6 +5,7 @@ set -xg JAVA_HOME (/usr/libexec/java_home)
 alias git=hub
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias ll='exa -lh'
+alias vim=nvim
 
 # Add to default $PATH
 set -g fish_user_paths $fish_user_paths /usr/local/sbin $HOME/.cargo/bin $HOME/bin
