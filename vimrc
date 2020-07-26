@@ -2,41 +2,25 @@
 
 set nocompatible " Set baseline options to vim defaults instead of vi defaults.
 
-" TODO(vim/vim#3117): remove this
-if has('python3')
-  silent! python3 1
-endif
-
 " Plugins:
 call plug#begin('~/.vim/plugged')
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Lokaltog/powerline'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --racer-completer' }
-Plug 'altercation/vim-colors-solarized'
-Plug 'cespare/vim-toml'
-Plug 'cstrahan/vim-capnp'
-Plug 'danro/rename.vim'
-Plug 'elzr/vim-json'
+
 Plug 'godlygeek/tabular'
-Plug 'guns/vim-clojure-static'
+Plug 'iCyMind/NeoSolarized'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'pangloss/vim-javascript'
-Plug 'rust-lang/rust.vim'
-Plug 'salsifis/vim-transpose'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-
-if system('uname') =~ "Darwin"
-  Plug 'hashrocket/vim-macdown'
-endif
+Plug 'uarun/vim-protobuf'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -45,12 +29,8 @@ filetype plugin on " Enable filetype plugins.
 syntax on          " Enable syntax highlighting.
 
 set hidden " Allow abandoned buffers to be hidden instead of unloaded.
-set shell=/bin/bash
-
 set clipboard=unnamed " Set the system clipboard to the default yank and paste register.
-
-"" Expected backspace behaviour
-set backspace=indent,eol,start
+set backspace=indent,eol,start " Expected backspace behavior
 
 "" Lines
 set colorcolumn=101 " highlight the 101st column
@@ -58,7 +38,7 @@ set number          " Display line numbers
 set ruler           " Display line and column number in status
 set nowrap          " turn off line wrapping
 set wrapmargin=0    " turn off line wrapping in insert mode
-set textwidth=80    " 80 character lines
+set textwidth=100   " 100 character lines
 
 "" Indentation
 set shiftwidth=2  " Number of spaces to use for each step of (auto)indent.
@@ -109,15 +89,17 @@ set autoread  " Automatically read changed files
 set autowrite " Write the contents of a modified file when switching buffers.
 
 "" Theme
+set termguicolors
 set background=dark
-colorscheme solarized
-set guifont=Inconsolata-dz\ for\ Powerline:h16
-set t_Co=256 " Number of colors.
+colorscheme NeoSolarized
+set guifont=FiraCode\ Nerd\ Font
 set title " When on, the title of the window will be set.
 
 "" Mouse settings
-set mouse=a         " Enable the use of the mouse.
-set ttymouse=xterm2 " Use mouse scrolling in terminal window
+if !has('nvim')
+    set mouse=a         " Enable the use of the mouse.
+    set ttymouse=xterm2 " Use mouse scrolling in terminal window
+endif
 
 set exrc   " Enable per-directory .vimrc files.
 set secure " Disable unsafe commands in local .vimrc files.
@@ -137,36 +119,16 @@ augroup END
 
 """ Plugin Configuration
 
-"" Powerline
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-set laststatus=2   " Always show the statusline.
-set encoding=utf-8 " Necessary to show Unicode glyphs.
-set noshowmode
+"" airline
+let g:airline_powerline_fonts = 1
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 "" Rainbow Parentheses
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+let g:rainbow#max_level = 16
+let g:rainbow#blacklist = [248]
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+au Syntax * RainbowParentheses
 
 "" Comand Line
 set wildmode=list:longest " Complete longest common string, then list (similar to bash)
@@ -196,16 +158,74 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-"" YouCompleteMe
-let g:ycm_autoclose_preview_window_after_completion=1 " Close the popup buffer on completion.
-let g:ycm_min_num_of_chars_for_completion=1
-let g:ycm_min_num_identifier_candidate_chars=0
-let g:ycm_confirm_extra_conf=0
-let g:ycm_rust_src_path = substitute(system('rustc --print sysroot'), '\n\+$', '', '') . '/lib/rustlib/src/rust/src'
-nnoremap <C-i> :YcmCompleter GoTo<CR>
-nnoremap <C-t> :YcmCompleter GetType<CR>
+"" CoC
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+" Give more space for displaying messages.
+set cmdheight=2
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <C-i> <Plug>(coc-definition)
+nmap <C-t> <Plug>(coc-type-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
-""" Language Configuratoin
+
+""" Language Configuration
 
 "" Rust
 
@@ -230,12 +250,3 @@ augroup git
   autocmd!
   autocmd FileType gitcommit setlocal textwidth=72
 augroup END
-
-"" C++
-autocmd Filetype c,cpp set comments^=:///
-
-"" Goto header (.h) or impl (.cc) for the current buffer file.
-noremap <C-h> :e %:p:s,.h$,.X123X,:s,.cc$,.h,:s,.X123X$,.cc,<CR>
-
-"" Disable the buggy SQL autocomplete plugin.
-let g:omni_sql_no_default_maps = 1
