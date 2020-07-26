@@ -31,6 +31,7 @@ done
 # Install config.fish and alacritty.yml.
 symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 symlink alacritty.yml "${dir}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
+symlink init.vim "${dir}/init.vim" "${HOME}/.config/nvim/init.vim"
 
 # Install vim plugins, if vim exists.
 if [[ $(type -P vim) ]]; then
