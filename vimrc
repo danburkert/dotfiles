@@ -90,7 +90,7 @@ set autowrite " Write the contents of a modified file when switching buffers.
 
 "" Theme
 set termguicolors
-set background=dark
+set background=light
 colorscheme NeoSolarized
 set guifont=FiraCode\ Nerd\ Font
 set title " When on, the title of the window will be set.
@@ -122,7 +122,7 @@ augroup END
 "" airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_solarized_bg='light'
 
 "" Rainbow Parentheses
 let g:rainbow#max_level = 16
@@ -250,3 +250,6 @@ augroup git
   autocmd!
   autocmd FileType gitcommit setlocal textwidth=72
 augroup END
+
+"" Disable the buggy SQL autocomplete plugin.
+let g:omni_sql_no_default_maps = 1
