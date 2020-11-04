@@ -21,3 +21,6 @@ set -g fish_user_paths "/usr/local/opt/postgresql@10/bin" $fish_user_paths
 
 # Add Node 12 to the path
 set -g fish_user_paths "/usr/local/opt/node@12/bin" $fish_user_paths
+
+# Add Python 3.7 to the path
+set -g fish_user_paths "/usr/local/opt/python@3.7/bin" $fish_user_paths

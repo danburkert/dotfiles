@@ -10,11 +10,15 @@
   pager = diff-so-fancy | less --tabs=4 -RFX
 [merge]
   tool = nvim -d
+[mergetool]
+  keepBackup = false
 [alias]
   last = log -1
   logp = log --pretty=oneline
   staged = diff --staged
   unstage = reset HEAD
+  branches = branch -v --sort=-committerdate
+  brs = branches
 [push]
   default = current
 [status]
@@ -39,4 +43,4 @@
   new = green
   whitespace = red reverse
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain

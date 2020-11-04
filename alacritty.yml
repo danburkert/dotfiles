@@ -77,7 +77,6 @@ schemes:
 colors: *light
 
 key_bindings:
-  - { key: N,        mods: Command, action: SpawnNewInstance             }
   # https://github.com/alacritty/alacritty/issues/62
   - { key: A,         mods: Alt,       chars: "\x1ba"                       }
   - { key: B,         mods: Alt,       chars: "\x1bb"                       }
