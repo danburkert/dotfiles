@@ -1,0 +1,23 @@
+[aws]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[docker]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[python]
+symbol = " "
+
+[rust]
+symbol = " "

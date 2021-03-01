@@ -253,3 +253,6 @@ augroup END
 
 "" Disable the buggy SQL autocomplete plugin.
 let g:omni_sql_no_default_maps = 1
+
+"" asm=nasm
+let g:asmsyntax = 'nasm'

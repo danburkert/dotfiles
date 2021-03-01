@@ -23,16 +23,18 @@ symlink() {
   ln -s $2 $3
 }
 
+# Install RC configs.
 for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc ripgreprc
 do
   symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done
 
-# Install config.fish and alacritty.yml.
+# Install XDG configs.
 mkdir -p "${HOME}/.config/alacritty" "${HOME}/.config/nvim" 
 symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 symlink alacritty.yml "${dir}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
 symlink init.vim "${dir}/init.vim" "${HOME}/.config/nvim/init.vim"
+symlink starship.toml "${dir}/starship.toml" "${HOME}/.config/starship.toml"
 
 # Install vim plugins, if vim exists.
 if [[ $(type -P vim) ]]; then
