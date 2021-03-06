@@ -35,7 +35,7 @@ symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 symlink alacritty.yml "${dir}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
 symlink init.vim "${dir}/init.vim" "${HOME}/.config/nvim/init.vim"
 symlink starship.toml "${dir}/starship.toml" "${HOME}/.config/starship.toml"
-symlink starship.toml "${dir}/bat-config" "${HOME}/.config/bat/config"
+mkdir -p "${HOME}/.config/bat" && symlink starship.toml "${dir}/bat-config" "${HOME}/.config/bat/config"
 
 # Install vim plugins, if vim exists.
 if [[ $(type -P nvim) ]]; then
