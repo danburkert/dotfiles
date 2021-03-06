@@ -1,2 +1,11 @@
 [directory]
 truncation_symbol = "../"
+
+[python]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
