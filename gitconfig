@@ -46,4 +46,5 @@
   helper = osxkeychain
 [delta]
   line-numbers = true
-  syntax-theme = Solarized (light)
+  syntax-theme = GitHub
+  # syntax-theme = Solarized (light)
