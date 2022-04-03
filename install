@@ -34,6 +34,7 @@ mkdir -p "${HOME}/.config/alacritty" "${HOME}/.config/nvim"
 symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 symlink alacritty.yml "${dir}/alacritty.yml" "${HOME}/.config/alacritty/alacritty.yml"
 symlink init.vim "${dir}/init.vim" "${HOME}/.config/nvim/init.vim"
+symlink lunarvim.lua "${dir}/lunarvim.lua" "${HOME}/.config/lvim/config.lua"
 symlink starship.toml "${dir}/starship.toml" "${HOME}/.config/starship.toml"
 mkdir -p "${HOME}/.config/bat" && symlink starship.toml "${dir}/bat-config" "${HOME}/.config/bat/config"
 
