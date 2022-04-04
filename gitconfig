@@ -6,7 +6,7 @@
   user = [danburkert]
 [core]
   excludesfile = ~/.gitignore
-  editor = nvim
+  editor = lvim
   pager = delta
 [merge]
   tool = nvim -d
@@ -30,21 +30,8 @@
   autosetupmerge = always
 [color]
   ui = true
-# [color "diff-highlight"]
-#  oldNormal = red
-#  oldHighlight = red 52
-#  newNormal = green
-#  newHighlight = green 22
-#[color "diff"]
-#  meta = yellow
-#  frag = magenta
-#  commit = yellow
-#  old = red
-#  new = green
-#  whitespace = red reverse
 [credential]
   helper = osxkeychain
 [delta]
   line-numbers = true
-  syntax-theme = GitHub
-  # syntax-theme = Solarized (light)
+  syntax-theme = gruvbox-dark

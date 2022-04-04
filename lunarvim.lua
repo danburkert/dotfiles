@@ -6,7 +6,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
 lvim.log.level = "warn"
@@ -56,11 +55,18 @@ lvim.keys.normal_mode["<C-g>"] = ":Telescope grep_string<CR>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
+lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
+
+-- Use relative paths in status line.
+require("lvim.core.lualine.components").filename.path = 1
+-- Use fish for the built-in terminal.
+lvim.builtin.terminal.shell = "fish"
+lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -71,6 +77,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "lua",
   "python",
   "typescript",
+  "tsx",
   "css",
   "rust",
   "java",
@@ -85,7 +92,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- ---@usage disable automatic installation of servers
 -- lvim.lsp.automatic_servers_installation = false
 
--- ---@usage Select which servers should be configured manually. Requires `:LvimCacheRest` to take effect.
+-- ---@usage Select which servers should be configured manually. Requires `:LvimCacheReset` to take effect.
 -- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
 -- vim.list_extend(lvim.lsp.override, { "pyright" })
 
@@ -139,18 +146,12 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {"ojroques/vim-oscyank"},
-  {"tpope/vim-surround"},
+  -- {"ojroques/vim-oscyank"},
   {"sainnhe/gruvbox-material"},
---     {"folke/tokyonight.nvim"},
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
+  {"tpope/vim-surround"},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
-  -- { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
-  { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
+  -- { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
 }
