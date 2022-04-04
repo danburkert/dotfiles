@@ -146,12 +146,25 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  -- {"ojroques/vim-oscyank"},
+  {"ojroques/vim-oscyank"},
   {"sainnhe/gruvbox-material"},
   {"tpope/vim-surround"},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
-  -- { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
 }
+
+-- If this is an SSH session, then set the clipboard provider to use the OSC
+-- plugin so that copy/paste is shared with host.
+--
+-- TODO: figure out how to translate this to lua.
+if vim.env.SSH_TTY then
+  vim.cmd [[
+    let g:clipboard = {
+            \   'name': 'osc52',
+            \   'copy': {'+': {lines, regtype -> OSCYankString(join(lines, "\n"))}},
+            \   'paste': {'+': {-> [split(getreg(''), '\n'), getregtype('')]}},
+            \ }
+  ]]
+end
