@@ -34,4 +34,4 @@
   helper = osxkeychain
 [delta]
   line-numbers = true
-  syntax-theme = gruvbox-dark
+  syntax-theme = gruvbox

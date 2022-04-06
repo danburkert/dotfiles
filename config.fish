@@ -20,7 +20,6 @@ for bin_dir in /usr/local/opt/postgresql@11/bin /bin/usr/local/opt/openjdk@11/bi
   end
 end
 
-
 if test -x /usr/local/opt/java11
   set -x JAVA_HOME /usr/local/opt/java11
 end

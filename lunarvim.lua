@@ -8,9 +8,15 @@ an executable
 ]]
 
 -- general
+-- lvim.gruvbox_material_background = 'hard'
+-- lvim.gruvbox_material_palatte = 'original'
+lvim.gruvbox_italic = 1
+lvim.gruvbox_contrast = 'hard'
+vim.opt.background = 'dark'
+
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "gruvbox-material"
+lvim.colorscheme = "gruvbox"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -147,7 +153,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Additional Plugins
 lvim.plugins = {
   {"ojroques/vim-oscyank"},
-  {"sainnhe/gruvbox-material"},
+  -- {"sainnhe/gruvbox-material"},
+  {"gruvbox-community/gruvbox"},
   {"tpope/vim-surround"},
   {"tpope/vim-repeat"},
 }
@@ -170,6 +177,7 @@ if vim.env.SSH_TTY then
   ]]
 end
 
+lvim.autocommands._formatoptions = {}
 vim.opt.formatoptions = {
   ["1"] = true,
   ["2"] = true, -- Use indent from 2nd line of a paragraph
