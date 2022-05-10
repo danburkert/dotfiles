@@ -9,7 +9,7 @@
   editor = lvim
   pager = delta
 [merge]
-  tool = nvim -d
+  tool = nvimdiff
 [mergetool]
   keepBackup = false
 [alias]
@@ -34,4 +34,4 @@
   helper = osxkeychain
 [delta]
   line-numbers = true
-  syntax-theme = gruvbox
+  syntax-theme = gruvbox-dark
