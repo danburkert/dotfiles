@@ -14,7 +14,7 @@ end
 
 # $PATH
 
-for bin_dir in /usr/local/opt/postgresql@11/bin /bin/usr/local/opt/openjdk@11/bin /usr/local/sbin $HOME/.cargo/bin $HOME/bin $HOME/.local/bin $HOME/go/bin
+for bin_dir in /usr/local/opt/postgresql@13/bin /bin/usr/local/opt/openjdk@11/bin /usr/local/sbin $HOME/.cargo/bin $HOME/bin $HOME/.local/bin $HOME/go/bin
   if test -d $bin_dir
     set -g fish_user_paths $bin_dir $fish_user_paths
   end

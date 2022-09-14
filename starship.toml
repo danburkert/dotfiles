@@ -1,11 +1,33 @@
-[directory]
-truncation_symbol = "../"
+format = """
+$all\
+$fill\
+$time\
+$line_break\
+$character
+"""
 
-[python]
-disabled = true
+[fill]
+symbol = " "
+
+[time]
+disabled = false
+style = "bold bright-black"
+format = "[$time]($style)"
+
+[directory]
+truncation_symbol = "…/"
 
 [aws]
 disabled = true
 
 [gcloud]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[buf]
+disabled = true
+
+[git_status]
 disabled = true
