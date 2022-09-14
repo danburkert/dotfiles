@@ -9,7 +9,7 @@
   editor = lvim
   pager = delta
 [merge]
-  tool = nvimdiff
+  tool = lvim -d
 [mergetool]
   keepBackup = false
 [alias]

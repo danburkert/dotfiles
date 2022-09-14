@@ -159,23 +159,32 @@ lvim.plugins = {
   {"tpope/vim-repeat"},
 }
 
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
-lvim.autocommands.custom_groups = {
-}
-
 -- If this is an SSH session, then set the clipboard provider to use the OSC
 -- plugin so that copy/paste is shared with host.
 --
+-- https://github.com/ojroques/vim-oscyank/issues/24
+--
 -- TODO: figure out how to translate this to lua.
-if vim.env.SSH_TTY then
+-- TODO: Disabled because it breaks intra-vim copy/paste
+if false and vim.env.SSH_TTY then
   vim.cmd [[
     let g:clipboard = {
             \   'name': 'osc52',
-            \   'copy': {'+': {lines, regtype -> OSCYankString(join(lines, "\n"))}},
-            \   'paste': {'+': {-> [split(getreg(''), '\n'), getregtype('')]}},
+            \   'copy': {
+            \      '+': {lines, regtype -> OSCYankString(join(lines, "\n"))},
+            \      '*': {lines, regtype -> OSCYankString(join(lines, "\n"))},
+            \   },
+            \   'paste': {
+            \      '+': {-> [split(getreg(''), '\n'), getregtype('')]},
+            \      '*': {-> [split(getreg(''), '\n'), getregtype('')]},
+            \   },
             \ }
   ]]
 end
+lvim.autocommands.custom_groups = {
+  -- { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
+  { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
+}
 
 lvim.autocommands._formatoptions = {}
 vim.opt.formatoptions = {

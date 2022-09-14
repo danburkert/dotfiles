@@ -1,5 +1,6 @@
 set -x FZF_DEFAULT_COMMAND 'rg --files'
 set -x RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+set -x SISU_USER 'dan'
 
 
 # Aliases
