@@ -27,9 +27,10 @@ brew install \
     maven \
     ncdu \
     ninja \
+    ncurses \
     nvim \
     openblas \
-    postgresql@10 \
+    postgresql@13 \
     ripgrep \
     socat \
     starship \
@@ -136,3 +137,7 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 1. Install dotfiles
+
+1. Set up terminfo
+
+https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
