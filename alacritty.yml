@@ -6,7 +6,6 @@ font:
     family: 'FiraCode Nerd Font'
 
   size: 12.0
-  use_thin_strokes: true
 
 schemes:
   # Base16 Gruvbox dark, hard 256 - alacritty color config

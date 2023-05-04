@@ -6,28 +6,25 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
 -- general
--- lvim.gruvbox_material_background = 'hard'
--- lvim.gruvbox_material_palatte = 'original'
-lvim.gruvbox_italic = 1
-lvim.gruvbox_contrast = 'hard'
-vim.opt.background = 'dark'
-
 lvim.log.level = "warn"
-lvim.format_on_save = true
+vim.opt.background = 'dark'
+lvim.format_on_save.enabled = true
 lvim.colorscheme = "gruvbox"
+-- to disable icons and use a minimalist setup, uncomment the following
+-- lvim.use_icons = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 -- add your own keymapping
 -- lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.insert_mode["jk"] = "<ESC>"
 -- unmap a default keymapping
--- lvim.keys.normal_mode["<C-Up>"] = false
--- edit a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
-
-lvim.keys.normal_mode["<C-g>"] = ":Telescope grep_string<CR>"
+-- vim.keymap.del("n", "<C-Up>")
+-- override a default keymapping
+-- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -47,31 +44,33 @@ lvim.keys.normal_mode["<C-g>"] = ":Telescope grep_string<CR>"
 --   },
 -- }
 
+-- Change theme settings
+-- lvim.builtin.theme.options.dim_inactive = true
+-- lvim.builtin.theme.options.style = "storm"
+
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 -- lvim.builtin.which_key.mappings["t"] = {
 --   name = "+Trouble",
 --   r = { "<cmd>Trouble lsp_references<cr>", "References" },
 --   f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
---   d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
+--   d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
 --   q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
---   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
+--   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+vim.opt.shell = "/bin/sh"
 
 -- Use relative paths in status line.
 require("lvim.core.lualine.components").filename.path = 1
--- Use fish for the built-in terminal.
-lvim.builtin.terminal.shell = "fish"
 lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -91,20 +90,38 @@ lvim.builtin.treesitter.ensure_installed = {
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
-lvim.builtin.treesitter.highlight.enabled = true
+lvim.builtin.treesitter.highlight.enable = true
 
 -- generic LSP settings
 
+-- -- make sure server will always be installed even if the server is in skipped_servers list
+-- lvim.lsp.installer.setup.ensure_installed = {
+--     "sumneko_lua",
+--     "jsonls",
+-- }
+-- -- change UI setting of `LspInstallInfo`
+-- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
+-- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
+-- lvim.lsp.installer.setup.ui.border = "rounded"
+-- lvim.lsp.installer.setup.ui.keymaps = {
+--     uninstall_server = "d",
+--     toggle_server_expand = "o",
+-- }
+
 -- ---@usage disable automatic installation of servers
--- lvim.lsp.automatic_servers_installation = false
+-- lvim.lsp.installer.setup.automatic_installation = false
 
--- ---@usage Select which servers should be configured manually. Requires `:LvimCacheReset` to take effect.
--- See the full default list `:lua print(vim.inspect(lvim.lsp.override))`
--- vim.list_extend(lvim.lsp.override, { "pyright" })
-
--- ---@usage setup a server -- see: https://www.lunarvim.org/languages/#overriding-the-default-configuration
+-- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
+-- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
+-- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
--- require("lvim.lsp.manager").setup("pylsp", opts)
+-- require("lvim.lsp.manager").setup("pyright", opts)
+
+-- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
+-- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
+-- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
+--   return server ~= "emmet_ls"
+-- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
 -- -- See <https://github.com/neovim/nvim-lspconfig#keybindings-and-completion>
@@ -117,20 +134,21 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
--- local formatters = require "lvim.lsp.null-ls.formatters"
--- formatters.setup {
---   { command = "black", filetypes = { "python" } },
---   { command = "isort", filetypes = { "python" } },
---   {
---     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
---     command = "prettier",
---     ---@usage arguments to pass to the formatter
---     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
---     extra_args = { "--print-with", "100" },
---     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
---     filetypes = { "typescript", "typescriptreact" },
---   },
--- }
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  --   { command = "black", filetypes = { "python" } },
+  --   { command = "isort", filetypes = { "python" } },
+  { command = "prettier", filetypes = { "html", "scss", "typescript", "typescriptreact" } },
+  --   {
+  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "prettier",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--print-with", "100" },
+  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --     filetypes = { "typescript", "typescriptreact" },
+  --   },
+}
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -152,11 +170,19 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {"ojroques/vim-oscyank"},
-  -- {"sainnhe/gruvbox-material"},
-  {"gruvbox-community/gruvbox"},
-  {"tpope/vim-surround"},
-  {"tpope/vim-repeat"},
+  -- { "ojroques/vim-oscyank" },
+  { "ellisonleao/gruvbox.nvim" },
+  { "tpope/vim-surround" },
+  { "tpope/vim-repeat" },
+  {
+    -- TODO(npxbr/glow.nvim#107):
+    -- "npxbr/glow.nvim",
+    "pyqlsa/glow.nvim",
+    branch = 'blank-preview',
+    config = function() require("glow").setup() end,
+    -- command = "Glow",
+    ft = { "markdown" },
+  },
 }
 
 -- If this is an SSH session, then set the clipboard provider to use the OSC
@@ -186,20 +212,34 @@ lvim.autocommands.custom_groups = {
   { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
 }
 
-lvim.autocommands._formatoptions = {}
-vim.opt.formatoptions = {
-  ["1"] = true,
-  ["2"] = true, -- Use indent from 2nd line of a paragraph
-  q = true, -- continue comments with gq"
-  c = true, -- Auto-wrap comments using textwidth
-  r = true, -- Continue comments when pressing Enter
-  o = true,
-  n = true, -- Recognize numbered lists
-  t = false, -- autowrap lines using text width value
-  j = true, -- remove a comment leader when joining lines.
-  -- Only break if the line was not longer than 'textwidth' when the insert
-  -- started and only at a white character that has been entered during the
-  -- current insert command.
-  l = true,
-  v = true,
-}
+-- lvim.autocommands._formatoptions = {}
+--  vim.opt.formatoptions = {
+--    ["1"] = true,
+--    ["2"] = true, -- Use indent from 2nd line of a paragraph
+--    q = true, -- continue comments with gq"
+--    c = true, -- Auto-wrap comments using textwidth
+--    r = true, -- Continue comments when pressing Enter
+--    o = true,
+--    n = true, -- Recognize numbered lists
+--    t = false, -- autowrap lines using text width value
+--    j = true, -- remove a comment leader when joining lines.
+--    -- Only break if the line was not longer than 'textwidth' when the insert
+--    -- started and only at a white character that has been entered during the
+--    -- current insert command.
+--    l = true,
+--    v = true,
+--  }
+
+-- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   pattern = { "*.json", "*.jsonc" },
+--   -- enable wrap mode for json files only
+--   command = "setlocal wrap",
+-- })
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "zsh",
+--   callback = function()
+--     -- let treesitter use bash highlight for zsh files as well
+--     require("nvim-treesitter.highlight").attach(0, "bash")
+--   end,
+-- })

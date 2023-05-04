@@ -38,10 +38,12 @@ brew install \
     wifi-password
 
 brew install --cask \
+    1password \
     alacritty \
     caffeine \
     dash \
     divvy \
+    dropbox \
     homebrew/cask-fonts/font-fira-code-nerd-font \
     insomnia \
     intellij-idea-ce \
@@ -87,15 +89,15 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 # Set a fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
 # Save screenshots to a folder (other than the desktop)
-defaults write com.apple.screencapture location -string "${HOME}/screenshots"
+defaults write com.apple.screencapture location -string "$HOME/screenshots"
 
 # Set the home directory as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true

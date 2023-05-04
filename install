@@ -24,7 +24,7 @@ symlink() {
 }
 
 # Install RC configs.
-for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc ripgreprc
+for file in gitconfig gitignore hushlogin tmux.conf vimrc ideavimrc
 do
   symlink "${file}" "${dir}/${file}" "${HOME}/.${file}"
 done

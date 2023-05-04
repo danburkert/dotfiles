@@ -15,7 +15,6 @@ Vagrantfile
 gitignore*
 gradle-wrapper.jar
 
-.ycm_extra_conf.py
 jsconfig.json
 
 .ruby-version

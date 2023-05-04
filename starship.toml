@@ -14,6 +14,9 @@ disabled = false
 style = "bold bright-black"
 format = "[$time]($style)"
 
+[package]
+disabled = true
+
 [directory]
 truncation_symbol = "…/"
 

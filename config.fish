@@ -1,7 +1,5 @@
 set -x FZF_DEFAULT_COMMAND 'rg --files'
-set -x RIPGREP_CONFIG_PATH $HOME/.ripgreprc
-set -x SISU_USER 'dan'
-
+set -x TERMINFO_DIRS $HOME/.local/share/terminfo
 
 # Aliases
 
@@ -15,14 +13,14 @@ end
 
 # $PATH
 
-for bin_dir in /usr/local/opt/postgresql@13/bin /bin/usr/local/opt/openjdk@11/bin /usr/local/sbin $HOME/.cargo/bin $HOME/bin $HOME/.local/bin $HOME/go/bin
+for bin_dir in /usr/local/sbin $HOME/.cargo/bin $HOME/bin $HOME/.local/bin /opt/homebrew/bin $HOME/src/clockwork/bin
   if test -d $bin_dir
     set -g fish_user_paths $bin_dir $fish_user_paths
   end
 end
 
-if test -x /usr/local/opt/java11
-  set -x JAVA_HOME /usr/local/opt/java11
-end
+# nvm.fish https://github.com/jorgebucaran/nvm.fish
+set -x nvm_default_version lts
+pyenv init - | source
 
 starship init fish | source
