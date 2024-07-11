@@ -10,9 +10,13 @@
   editor = lvim
   pager = delta
 [merge]
-  tool = lvim -d
+  tool = vimdiff
+  conflictstyle = diff3
 [mergetool]
   keepBackup = false
+  prompt = false
+[mergetool "vimdiff"]
+  cmd = "nvim -d $MERGED $LOCAL $BASE $REMOTE"
 [alias]
   last = log -1
   logp = log --pretty=oneline

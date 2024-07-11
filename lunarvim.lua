@@ -21,6 +21,9 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.insert_mode["jk"] = "<ESC>"
+
+vim.o.guifont = "Fira Code:h12"
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -64,9 +67,10 @@ lvim.keys.insert_mode["jk"] = "<ESC>"
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.terminal.active = true
+lvim.builtin.terminal.open_mapping = "<c-t>"
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+-- https://www.lunarvim.org/docs/troubleshooting#are-you-using-fish
 vim.opt.shell = "/bin/sh"
 
 -- Use relative paths in status line.
@@ -77,15 +81,16 @@ lvim.builtin.telescope.defaults.path_display = { shorten = 10 }
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "c",
+  "css",
+  "java",
   "javascript",
   "json",
   "lua",
   "python",
-  "typescript",
-  "tsx",
-  "css",
   "rust",
-  "java",
+  "sql",
+  "tsx",
+  "typescript",
   "yaml",
 }
 
@@ -136,8 +141,8 @@ lvim.builtin.treesitter.highlight.enable = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  --   { command = "black", filetypes = { "python" } },
-  --   { command = "isort", filetypes = { "python" } },
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" } },
   { command = "prettier", filetypes = { "html", "scss", "typescript", "typescriptreact" } },
   --   {
   --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
@@ -183,33 +188,6 @@ lvim.plugins = {
     -- command = "Glow",
     ft = { "markdown" },
   },
-}
-
--- If this is an SSH session, then set the clipboard provider to use the OSC
--- plugin so that copy/paste is shared with host.
---
--- https://github.com/ojroques/vim-oscyank/issues/24
---
--- TODO: figure out how to translate this to lua.
--- TODO: Disabled because it breaks intra-vim copy/paste
-if false and vim.env.SSH_TTY then
-  vim.cmd [[
-    let g:clipboard = {
-            \   'name': 'osc52',
-            \   'copy': {
-            \      '+': {lines, regtype -> OSCYankString(join(lines, "\n"))},
-            \      '*': {lines, regtype -> OSCYankString(join(lines, "\n"))},
-            \   },
-            \   'paste': {
-            \      '+': {-> [split(getreg(''), '\n'), getregtype('')]},
-            \      '*': {-> [split(getreg(''), '\n'), getregtype('')]},
-            \   },
-            \ }
-  ]]
-end
-lvim.autocommands.custom_groups = {
-  -- { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
-  { "TextYankPost", "*", "if v:event.operator is 'y' && v:event.regname is '' | execute 'OSCYankReg \"' | endif" }
 }
 
 -- lvim.autocommands._formatoptions = {}
