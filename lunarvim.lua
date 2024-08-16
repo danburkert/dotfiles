@@ -75,22 +75,27 @@ lvim.plugins = {
     config = function()
       vim.g.rustaceanvim = {
         server = {
-          on_attach = require("lvim.lsp").common_on_attach
+          on_attach = require("lvim.lsp").common_on_attach,
+          settings = {
+            -- rust-analyzer language server configuration
+            ['rust-analyzer'] = {
+              ['files'] = {
+                ['excludeDirs'] = {
+                  'node_modules',
+                  'static',
+                  'venv',
+                }
+              }
+            },
+          },
         },
       }
     end,
   },
   {
     "saecki/crates.nvim",
-    version = "v0.4.0",
+    version = "v0.4",
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("crates").setup {
-        popup = {
-          border = "rounded",
-        },
-      }
-    end,
   },
   {
     "j-hui/fidget.nvim",
