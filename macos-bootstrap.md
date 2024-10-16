@@ -13,8 +13,7 @@ brew install \
     1password \
     bat \
     dash \
-    dropbox \
-    exa \
+    eza \
     fd \
     fish \
     font-fira-code-nerd-font \
@@ -31,7 +30,7 @@ brew install \
     ripgrep \
     rustup \
     socat \
-    spotify
+    spotify \
     starship \
     tmux \
     tree \
