@@ -20,6 +20,7 @@ symlink() {
     mv $3 "${tmp}"
   fi
 
+  mkdir -p $(dirname $3)
   ln -s $2 $3
 }
 
@@ -29,4 +30,5 @@ symlink gitconfig "${dir}/gitconfig" "${HOME}/.config/git/config"
 symlink gitignore "${dir}/gitignore" "${HOME}/.config/git/ignore"
 symlink lvim.lua "${dir}/lvim.lua" "${HOME}/.config/lvim/config.lua"
 symlink starship.toml "${dir}/starship.toml" "${HOME}/.config/starship.toml"
+symlink tmux.conf "${dir}/tmux.conf" "${HOME}/.config/tmux/tmux.conf"
 symlink wezterm.lua "${dir}/wezterm.lua" "${HOME}/.config/wezterm/wezterm.lua"

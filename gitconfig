@@ -1,11 +1,11 @@
 [user]
   name = Dan Burkert
   email = dan@danburkert.com
-  signingkey = /Users/dan/.ssh/id_ed25519.pub
+  signingkey = ~/.ssh/id_ed25519.pub
 [github]
   user = [danburkert]
 [core]
-  excludesFile = /Users/dan/.config/git/ignore
+  excludesFile = ~/.config/git/ignore
   editor = lvim
   pager = delta
 [merge]
