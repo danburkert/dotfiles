@@ -5,7 +5,7 @@
 [github]
   user = [danburkert]
 [core]
-  excludesfile = ~/.gitignore
+  excludesFile = /Users/dan/.config/git/ignore
   editor = lvim
   pager = delta
 [merge]
