@@ -4,27 +4,20 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-
 lvim.format_on_save = true
 lvim.colorscheme = "gruvbox"
-vim.opt.background = 'dark'
 
 lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 lvim.keys.insert_mode["jk"] = "<ESC>"
 
-vim.o.guifont = "Fira Code:h12"
-
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "json",
   "lua",
-  "python",
   "rust",
-  "scss",
   "sql",
   "toml",
-  "typescript",
   "yaml",
 }
 

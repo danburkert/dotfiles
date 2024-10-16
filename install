@@ -27,4 +27,6 @@ symlink() {
 symlink config.fish "${dir}/config.fish" "${HOME}/.config/fish/config.fish"
 symlink gitconfig "${dir}/gitconfig" "${HOME}/.config/git/config"
 symlink gitignore "${dir}/gitignore" "${HOME}/.config/git/ignore"
+symlink lvim.lua "${dir}/lvim.lua" "${HOME}/.config/lvim/config.lua"
 symlink starship.toml "${dir}/starship.toml" "${HOME}/.config/starship.toml"
+symlink wezterm.lua "${dir}/wezterm.lua" "${HOME}/.config/wezterm/wezterm.lua"
