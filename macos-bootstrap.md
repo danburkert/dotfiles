@@ -34,6 +34,7 @@ brew install \
     spotify
     starship \
     tmux \
+    tree \
     wezterm \
     wifi-password
 
