@@ -1,8 +1,7 @@
 [user]
   name = Dan Burkert
-  email = dan@likeclockwork.com
+  email = dan@danburkert.com
   signingkey = /Users/dan/.ssh/id_ed25519.pub
-  # email = dan@danburkert.com
 [github]
   user = [danburkert]
 [core]
@@ -39,8 +38,8 @@
   helper = osxkeychain
 [delta]
   line-numbers = true
-  syntax-theme = gruvbox-dark
+  syntax-theme = gruvbox
 [gpg]
-	format = ssh
+  format = ssh
 [commit]
   gpgsign = true
