@@ -10,55 +10,33 @@
 
 ```bash
 brew install \
+    1password \
     bat \
+    dash \
+    dropbox \
     exa \
     fd \
     fish \
+    font-fira-code-nerd-font \
     fzf \
     gh \
     git-delta \
-    grpcurl \
     htop \
     iftop \
-    java \
+    insomnia \
     jq \
-    kubectx \
-    kubernetes-cli \
-    maven \
     ncdu \
-    ninja \
     ncurses \
     nvim \
-    openblas \
-    postgresql@13 \
     ripgrep \
+    rustup \
     socat \
+    spotify
     starship \
     tmux \
+    wezterm \
     wifi-password
 
-brew install --cask \
-    1password \
-    alacritty \
-    caffeine \
-    dash \
-    divvy \
-    dropbox \
-    homebrew/cask-fonts/font-fira-code-nerd-font \
-    insomnia \
-    intellij-idea-ce \
-    monodraw \
-    notion \
-    slack \
-    spotify \
-    visualvm
-
-```
-
-1. Install language toolchains
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
 1. Set MacOS defaults
@@ -69,7 +47,6 @@ From https://github.com/mathiasbynens/dotfiles/blob/master/.macos
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
-
 
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
@@ -139,7 +116,3 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 1. Install dotfiles
-
-1. Set up terminfo
-
-https://gpanders.com/blog/the-definitive-guide-to-using-tmux-256color-on-macos/
